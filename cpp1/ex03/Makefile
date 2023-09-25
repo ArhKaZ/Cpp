@@ -1,6 +1,8 @@
 #===========================VARIABLE===============================#
-SRCS			:=	Account.cpp\
-					tests.cpp\
+SRCS			:=	HumanA.cpp\
+					HumanB.cpp\
+					main.cpp\
+					Weapon.cpp\
 
 OBJS_D			:=	objs/
 
@@ -8,11 +10,13 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	Account.hpp
+HEAD			:=	HumanA.hpp\
+					HumanB.hpp\
+					Weapon.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	bank
+NAME			:= Versus
 
 #=========================FLAG===============================#
 CC				:=	g++ -std=c++98

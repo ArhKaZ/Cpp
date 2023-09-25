@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
+/*   Phonebook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 23:41:25 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/15 13:56:22 by syluiset         ###   ########.fr       */
+/*   Updated: 2023/09/18 13:20:10 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
+#include "Phonebook.class.hpp"
 #include <iostream>
+#include <iomanip>
 
 Phonebook::Phonebook( void )
 {
@@ -34,14 +35,12 @@ int Phonebook::get_nb_contact( void ) const
     return (i);
 }
 
-std::string trunc_or_not( std::string string)
+void trunc_or_not( std::string string)
 {
-    if (string.size() > 10)
-    {
-        string.resize(9);
-        string.push_back('.');
-    }
-    return (string);
+	if (string.size() > 10)
+		std::cout << std::setw(9) << string.substr(0, 9) + ".";
+	else
+		std::cout << std::setw(10) << string;
 }
 
 void Phonebook::add_contact(int index)
@@ -79,10 +78,13 @@ void Phonebook::search_contact( void ) const
     {
         if (this->contacts[i].get_first_name().empty() == false)
         {
-            std::cout << i + 1 << " | "
-			<< trunc_or_not(this->contacts[i].get_first_name()) << " | "
-            << trunc_or_not(this->contacts[i].get_last_name()) << " | "
-            << trunc_or_not(this->contacts[i].get_nickname()) << " | " << std::endl;
+            std::cout << i + 1 << "| ";
+			trunc_or_not(this->contacts[i].get_first_name());
+			std::cout << "| ";
+            trunc_or_not(this->contacts[i].get_last_name());
+			std::cout << "| ";
+            trunc_or_not(this->contacts[i].get_nickname());
+			std::cout << "| " << std::endl;
         }
     }
     std::cout << "Enter the number of the contact you want" << std::endl;

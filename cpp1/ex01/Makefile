@@ -1,6 +1,7 @@
 #===========================VARIABLE===============================#
-SRCS			:=	Account.cpp\
-					tests.cpp\
+SRCS			:=	main.cpp\
+					Zombie.cpp\
+					zombieHorde.cpp\
 
 OBJS_D			:=	objs/
 
@@ -8,11 +9,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	Account.hpp
+HEAD			:= Zombie.hpp
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	bank
+NAME			:=	Braiiiinnnzzzz
 
 #=========================FLAG===============================#
 CC				:=	g++ -std=c++98

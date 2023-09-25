@@ -1,6 +1,5 @@
 #===========================VARIABLE===============================#
-SRCS			:=	Account.cpp\
-					tests.cpp\
+SRCS			:=	main.cpp\
 
 OBJS_D			:=	objs/
 
@@ -8,11 +7,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	Account.hpp
+HEAD			:=
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	bank
+NAME			:=	HTIB
 
 #=========================FLAG===============================#
 CC				:=	g++ -std=c++98
