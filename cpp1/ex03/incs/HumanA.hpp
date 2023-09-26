@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:43:52 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/25 14:59:53 by syluiset         ###   ########.fr       */
+/*   Updated: 2023/09/26 11:53:31 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 class HumanA {
 private:
+    Weapon&		_weapon;
 	std::string _name;
-	Weapon		_weapon;
 public:
-	HumanA(std::string name, Weapon weapon);
+	HumanA(std::string name, Weapon& weapon);
 	~HumanA( void );
 	void attack( void );
 };

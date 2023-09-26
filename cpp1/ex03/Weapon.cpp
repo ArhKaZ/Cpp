@@ -14,16 +14,19 @@
 
 Weapon::Weapon( void )
 {
+    std::cout << "Weapon construct\n";
 	return ;
 }
 
 Weapon::Weapon(std::string type)
 {
+    std::cout << "Weapon construct\n";
 	this->_type = type;
 }
 
 Weapon::~Weapon(void)
 {
+    std::cout << "Weapon destroyed\n";
 	return ;
 }
 
