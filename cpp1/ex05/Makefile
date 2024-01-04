@@ -1,23 +1,18 @@
 #===========================VARIABLE===============================#
-SRCS			:=	HumanA.cpp\
-					HumanB.cpp\
-					main.cpp\
-					Weapon.cpp\
+SRCS			:=	Harl.cpp \
+					main.cpp \
 
 OBJS_D			:=	objs/
 
 OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
+NAME			:=	Harl
+
 HEAD_D			:=	incs/
 
-HEAD			:=	HumanA.hpp\
-					HumanB.hpp\
-					Weapon.hpp\
+HEAD			:=	Harl.hpp
 
-HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
-
-NAME			:= Versus
-
+HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))					
 #=========================FLAG===============================#
 CC				:=	g++ -std=c++98
 

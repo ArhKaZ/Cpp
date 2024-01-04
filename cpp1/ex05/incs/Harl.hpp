@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:54:47 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 15:57:31 by syluiset         ###   ########.fr       */
+/*   Created: 2023/11/27 14:24:51 by syluiset          #+#    #+#             */
+/*   Updated: 2023/11/27 15:55:06 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#pragma once
+#include <iostream>
 
-HumanB::HumanB(std::string name) : _name(name)
-{
-	return ;
-}
+class Harl {
+    private: 
+    void debug(void);
+    void info(void);
+    void warning(void);
+    void error(void);
+    
+    public: 
+    Harl();
+    ~Harl();
+    void complain(std::string level);
 
-HumanB::~HumanB( void )
-{
-	return ;
-}
-
-void HumanB::attack( void ) const
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon &weapon)
-{
-	this->_weapon = &weapon;
-	return ;
-}
-
-Weapon HumanB::getWeapon( void )
-{
-	return (*(this->_weapon));
-}
+};
+    typedef void (Harl::*t_alert)( void );

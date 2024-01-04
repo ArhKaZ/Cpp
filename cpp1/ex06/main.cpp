@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:54:47 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 15:57:31 by syluiset         ###   ########.fr       */
+/*   Created: 2023/11/27 15:55:18 by syluiset          #+#    #+#             */
+/*   Updated: 2023/11/27 17:16:33 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include "incs/Harl.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
+int main(int argc, char **argv)
 {
-	return ;
-}
-
-HumanB::~HumanB( void )
-{
-	return ;
-}
-
-void HumanB::attack( void ) const
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon &weapon)
-{
-	this->_weapon = &weapon;
-	return ;
-}
-
-Weapon HumanB::getWeapon( void )
-{
-	return (*(this->_weapon));
+    Harl harl;
+    
+    if (argc == 2)
+    {
+        harl.complain(argv[1]);
+    }
+    return (0);
 }

@@ -1,8 +1,6 @@
 #===========================VARIABLE===============================#
-SRCS			:=	HumanA.cpp\
-					HumanB.cpp\
+SRCS			:=	Fixed.cpp\
 					main.cpp\
-					Weapon.cpp\
 
 OBJS_D			:=	objs/
 
@@ -10,13 +8,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	HumanA.hpp\
-					HumanB.hpp\
-					Weapon.hpp\
+HEAD			:=	Fixed.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:= Versus
+NAME			:=	fixed
 
 #=========================FLAG===============================#
 CC				:=	g++ -std=c++98
@@ -25,7 +21,7 @@ RM				:=	rm -rf
 
 CFLAGS			:=	-Wall -Wextra -Werror
 
-ASAN_F			:=	-g3
+ASAN_F			:=	-g3 -fsanitize=address
 
 #========================EXEC===============================#
 all				:	$(NAME)

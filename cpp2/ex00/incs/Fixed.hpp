@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:54:47 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 15:57:31 by syluiset         ###   ########.fr       */
+/*   Created: 2023/11/29 12:08:17 by syluiset          #+#    #+#             */
+/*   Updated: 2023/12/06 16:52:12 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-HumanB::HumanB(std::string name) : _name(name)
+class Fixed
 {
-	return ;
-}
+    private:
+        int value;
+        const static int nb_fra = 8;
+    public:
+        Fixed();
+        Fixed(const Fixed &f);
+        Fixed &operator=(const Fixed &f);
+        ~Fixed();
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
+};
 
-HumanB::~HumanB( void )
-{
-	return ;
-}
-
-void HumanB::attack( void ) const
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon &weapon)
-{
-	this->_weapon = &weapon;
-	return ;
-}
-
-Weapon HumanB::getWeapon( void )
-{
-	return (*(this->_weapon));
-}
+#endif

@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:54:47 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 15:57:31 by syluiset         ###   ########.fr       */
+/*   Created: 2023/11/27 15:55:18 by syluiset          #+#    #+#             */
+/*   Updated: 2023/11/27 16:14:10 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include "incs/Harl.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
+int main()
 {
-	return ;
-}
-
-HumanB::~HumanB( void )
-{
-	return ;
-}
-
-void HumanB::attack( void ) const
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon &weapon)
-{
-	this->_weapon = &weapon;
-	return ;
-}
-
-Weapon HumanB::getWeapon( void )
-{
-	return (*(this->_weapon));
+    std::string level;
+    Harl harl;
+    
+    while (1)
+    {
+        std::cout << "Enter a level of complaning, in CAPS please" << std::endl;
+        std::cin >> level;
+        if (level.compare("exit") == 0)
+            break ;
+        harl.complain(level);
+    }
+    return (0);
 }

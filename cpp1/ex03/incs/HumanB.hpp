@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:48:44 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/25 15:05:18 by syluiset         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:04:26 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ public:
 	HumanB(std::string name);
 	~HumanB( void );
 	void attack( void ) const ;
-	void setWeapon(Weapon weapon);
+	void setWeapon(Weapon &weapon);
 	Weapon getWeapon( void );
 };

@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:51:20 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/26 11:58:05 by syluiset         ###   ########.fr       */
+/*   Updated: 2023/09/27 10:21:02 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 HumanA::HumanA(std::string name, Weapon& weapon) : _weapon(weapon), _name(name)
 {
-    std::cout << "HumanA construct\n";
 	return ;
 }
 
 HumanA::~HumanA( void)
 {
-    std::cout << "HumanA destroyed\n";
 	return ;
 }
 

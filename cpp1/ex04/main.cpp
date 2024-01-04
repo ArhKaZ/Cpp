@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:54:47 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 15:57:31 by syluiset         ###   ########.fr       */
+/*   Created: 2023/11/24 10:21:36 by syluiset          #+#    #+#             */
+/*   Updated: 2023/11/27 14:14:32 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include "incs/fSed.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
+int main(int argc, char **argv)
 {
-	return ;
-}
-
-HumanB::~HumanB( void )
-{
-	return ;
-}
-
-void HumanB::attack( void ) const
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
-}
-
-void HumanB::setWeapon(Weapon &weapon)
-{
-	this->_weapon = &weapon;
-	return ;
-}
-
-Weapon HumanB::getWeapon( void )
-{
-	return (*(this->_weapon));
+    if (argc == 4)
+    {
+        fSed(argv);
+    }
+    else
+    {
+        std::cout << "Not good arguments" << std::endl;
+    }
+    return (0);
 }

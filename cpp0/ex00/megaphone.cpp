@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
                 caps[i] = ::toupper(caps[i]);
             std::cout << caps;
         }
-        // std::endl;
     }
     else
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
