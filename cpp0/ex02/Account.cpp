@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 14:08:29 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/18 13:27:24 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:17:46 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,81 +17,81 @@
 
 Account::Account( void )
 {
-	Account::_nbAccounts += 1;
-	std::cout << "index:" << this->_accountIndex
-	<< ";amount:" << this->_amount << ";created" << std::endl;
+	_nbAccounts += 1;
+	std::cout << "index:" << _accountIndex
+	<< ";amount:" << _amount << ";created" << std::endl;
 	return ;
 }
 
 Account::Account( int initial_deposit )
 {
-	Account::_nbAccounts += 1;
-    this->_amount = initial_deposit;
-    this->_nbDeposits = 1;
-	Account::_totalAmount += initial_deposit;
-	Account::_totalNbDeposits += 1;
-	std::cout << "index:" << this->_accountIndex
-	<< ";amount:" << this->_amount << ";created" << std::endl;
+	_nbAccounts += 1;
+    _amount = initial_deposit;
+    _nbDeposits = 1;
+	_totalAmount += initial_deposit;
+	_totalNbDeposits += 1;
+	std::cout << "index:" << _accountIndex
+	<< ";amount:" << _amount << ";created" << std::endl;
     return ;
 }
 
 Account::~Account( void )
 {
-	Account::_nbAccounts -= 1;
-	std::cout << "index:" << this->_accountIndex
-	<< ";amount:" << this->_amount << ";closed" << std::endl;
+	_nbAccounts -= 1;
+	std::cout << "index:" << _accountIndex
+	<< ";amount:" << _amount << ";closed" << std::endl;
     return ;
 }
 
 int Account::getNbAccounts( void )
 {
-	return Account::_nbAccounts;
+	return _nbAccounts;
 }
 
 int Account::getTotalAmount( void )
 {
-    return Account::_totalAmount;
+    return _totalAmount;
 }
 
 int	Account::getNbDeposits( void )
 {
-	return Account::_totalNbDeposits;
+	return _totalNbDeposits;
 }
 
 int	Account::getNbWithdrawals( void )
 {
-	return Account::_totalNbWithdrawals;
+	return _totalNbWithdrawals;
 }
 
 void Account::displayAccountsInfos( void )
 {
-	std::cout << "accounts:" << Account::_nbAccounts << ";total:"
-	<< Account::_totalAmount << ";deposits:" << Account::_totalNbDeposits
-	<< ";withdrawals:" << Account::_totalNbWithdrawals << std::endl;
+	std::cout << "accounts:" << _nbAccounts << ";total:"
+	<< _totalAmount << ";deposits:" << _totalNbDeposits
+	<< ";withdrawals:" << _totalNbWithdrawals << std::endl;
 }
 
 void Account::makeDeposit( int deposit )
 {
-	this->_amount += deposit;
-	this->_nbDeposits += 1;
-	Account::_totalAmount += deposit;
-	Account::_totalNbDeposits += 1;
+	_amount += deposit;
+	_nbDeposits += 1;
+	_totalAmount += deposit;
+	_totalNbDeposits += 1;
 	return ;
 }
 
-int	Account::checkAmount( void ) const 
+int	Account::checkAmount( void ) const
 {
-	return (this->_amount);
+	return (_amount);
 }
 
 bool Account::makeWithdrawal( int withdrawal )
 {
 	if (withdrawal >= checkAmount())
 		return (false);
-	this->_amount -= withdrawal;
-	Account::_totalAmount -= withdrawal;
-	Account::_totalNbWithdrawals += 1;
-	this->_nbWithdrawals += 1;
+	_amount -= withdrawal;
+	_totalAmount -= withdrawal;
+	_totalNbWithdrawals += 1;
+	_nbWithdrawals += 1;
 	return (true);
 }
 

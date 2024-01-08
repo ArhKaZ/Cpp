@@ -6,11 +6,11 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:50:36 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/04 11:50:22 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef ZOMBIE_H
 # define ZOMBIE_H
 #include <iostream>

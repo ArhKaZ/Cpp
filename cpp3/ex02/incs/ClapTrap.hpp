@@ -6,11 +6,11 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:09:20 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 14:05:16 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 #include <iostream>
@@ -37,6 +37,6 @@ class ClapTrap {
 	unsigned int gethp() const;
 	unsigned int getep() const;
 	unsigned int getad() const;
-	
+
 };
 #endif

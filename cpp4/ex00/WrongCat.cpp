@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:50:18 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 15:51:33 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:50:52 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,4 @@ WrongCat::~WrongCat()
 {
 	std::cout << "Destructor of type " << this->type << std::endl;
 }
+

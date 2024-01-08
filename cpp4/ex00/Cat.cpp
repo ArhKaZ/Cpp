@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:40:10 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 15:36:37 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:47:05 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,9 @@ Cat::Cat() : Animal()
 Cat::~Cat()
 {
 	std::cout << "Destructor of type " << this->type << std::endl;
+}
+
+void	Cat::makeSound(void) const
+{
+	std::cout << "Moewwwwwwwwwww" << std::endl;
 }

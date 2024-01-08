@@ -6,11 +6,11 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:48:38 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 09:25:37 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 #include <iostream>

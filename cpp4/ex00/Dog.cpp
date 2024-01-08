@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:38:45 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 15:36:39 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:46:57 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,9 @@ Dog::Dog() : Animal()
 Dog::~Dog()
 {
 		std::cout << "Destructor of type " << this->type << std::endl;
+}
+
+void	Dog::makeSound(void) const
+{
+	std::cout << "Woof Woof" << std::endl;
 }

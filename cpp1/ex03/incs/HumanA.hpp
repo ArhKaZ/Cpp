@@ -6,11 +6,11 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:43:52 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/04 12:29:40 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+
 #ifndef HUMANA_HPP
 #define HUMANA_HPP
 #include <iostream>

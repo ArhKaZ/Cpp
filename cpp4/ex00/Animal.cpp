@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:30:43 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 15:43:32 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:46:43 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,5 @@ std::string Animal::getType() const
 
 void	Animal::makeSound() const
 {
-	if (this->type == "Dog")
-		std::cout << "Woof Woof" << std::endl;
-	if (this->type == "Cat")
-		std::cout << "Moewwwwwwwwwww" << std::endl;
-	if (this->type == "Basic")
-		std::cout << "*Bruit sourd*" << std::endl;
+	std::cout << "*Bruit sourd*" << std::endl;
 }
