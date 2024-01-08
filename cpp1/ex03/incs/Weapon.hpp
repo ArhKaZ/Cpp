@@ -6,11 +6,13 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:37:50 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/25 14:43:12 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:29:50 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 #include <iostream>
 
 class Weapon {
@@ -23,3 +25,4 @@ public:
 	std::string getType(void);
 	void setType(std::string type);
 };
+#endif

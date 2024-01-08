@@ -6,10 +6,11 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:08:17 by syluiset          #+#    #+#             */
-/*   Updated: 2023/12/06 16:52:12 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/04 11:52:36 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef FIXED_HPP
 #define FIXED_HPP
 
