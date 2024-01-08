@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 11:48:38 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 09:25:37 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/05 13:38:46 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/05 14:18:18 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
-#include <iostream>
+#include "incs/ScavTrap.hpp"
+#include "incs/FragTrap.hpp"
 
-class ClapTrap {
-	private :
-	std::string _name;
-	unsigned int _hitPoints;
-	unsigned int _energyPoints;
-	unsigned int _attackDamage;
-
-	public :
-	ClapTrap();
-	ClapTrap(std::string name);
-	~ClapTrap();
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+int main()
+{
+	ClapTrap ct1("sisi");
+	ScavTrap st1("robot");
+	FragTrap ft1("bonGars");
+	ct1.attack(st1.getName());
+	st1.takeDamage(ct1.getad());
+	st1.beRepaired(30);
+	st1.attack(ct1.getName());
+	ct1.takeDamage(st1.getad());
+	st1.guardGate();
+	ft1.highFivesGuys();
+	return (0);
 }

@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 11:48:38 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 09:25:37 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/05 14:31:08 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/05 15:58:12 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 #include <iostream>
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-class ClapTrap {
-	private :
-	std::string _name;
-	unsigned int _hitPoints;
-	unsigned int _energyPoints;
-	unsigned int _attackDamage;
-
+class Cat : public Animal
+{
+	private:
+	Brain* Brain;
 	public :
-	ClapTrap();
-	ClapTrap(std::string name);
-	~ClapTrap();
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
-}
+	Cat();
+	~Cat();
+};
+
+#endif

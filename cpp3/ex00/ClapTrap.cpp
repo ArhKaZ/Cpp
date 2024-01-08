@@ -5,6 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2024/01/04 11:48:05 by syluiset          #+#    #+#             */
 /*   Updated: 2024/01/04 14:55:22 by syluiset         ###   ########.fr       */
 /*                                                                            */
@@ -55,7 +56,7 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	if ((this->_hit_points - (int)amount) < 0)
+	if ((this->_hit_points - amount) < 0)
 		this->_hit_points = 0;
 	else
 		this->_hit_points -= amount;

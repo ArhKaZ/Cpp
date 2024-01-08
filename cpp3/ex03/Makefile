@@ -1,11 +1,8 @@
 #===========================VARIABLE===============================#
-<<<<<<< HEAD
-SRCS			:=	ClapTrap.cpp\
-					main.cpp\
-=======
 SRCS			:=	ClapTrap.cpp \
 					main.cpp \
->>>>>>> f6e1635053ffff3bc6d23596b262bdabbb818922
+					ScavTrap.cpp \
+					FragTrap.cpp \
 
 OBJS_D			:=	objs/
 
@@ -13,19 +10,13 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-<<<<<<< HEAD
-HEAD			:=	ClapTrap.hpp\
-
-HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
-
-NAME			:=	claptrap
-=======
 HEAD			:=	ClapTrap.hpp \
+					ScavTrap.hpp \
+					FragTrap.hpp \
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
 NAME			:=	ClapTrap
->>>>>>> f6e1635053ffff3bc6d23596b262bdabbb818922
 
 #=========================FLAG===============================#
 CC				:=	g++ -std=c++98
@@ -58,8 +49,4 @@ fclean			:	clean
 
 re				:	fclean all
 
-<<<<<<< HEAD
 .PHONY			:	all clean fclean re FORCE
-=======
-.PHONY			:	all clean fclean re FORCE
->>>>>>> f6e1635053ffff3bc6d23596b262bdabbb818922
