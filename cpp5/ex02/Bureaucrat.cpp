@@ -6,11 +6,12 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:23:57 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 09:30:42 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:43:59 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incs/Bureaucrat.hpp"
+#include "incs/AForm.hpp"
 
 std::ostream &operator<<(std::ostream &op, Bureaucrat const &b)
 {
@@ -27,7 +28,10 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade)
 		if (grade > 150)
 			throw GradeTooLowException();
 		else
+		{
 			this->_grade = grade;
+			this->_name = name;
+		}
 	}
 	catch (Bureaucrat::GradeTooHighException& e)
 	{
@@ -37,7 +41,6 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	this->_name = name;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -83,4 +86,16 @@ void	Bureaucrat::downGrade()
 	{
 		std::cout << this->_name << ' ' << e.what() << '\n';
 	}
+
+	this->_grade += 1;
+}
+
+void	Bureaucrat::signForm(AForm &f)
+{
+    if (!f.beSigned(*this))
+	{
+		std::cout << this->getName() << " couln't sign " << f.getName() << '\n';
+	}
+    else
+	    std::cout << this->getName() << " signed " << f.getName() << std::endl;
 }

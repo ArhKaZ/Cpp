@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 11:55:37 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 09:31:03 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/09 13:51:17 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/09 13:59:53 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/Bureaucrat.hpp"
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
+#include "AForm.hpp"
 
-int main()
+class ShrubberyCreationForm : AForm
 {
-	Bureaucrat *b = new Bureaucrat("Sylvain", 10);
-	Bureaucrat *c = new Bureaucrat("Antoine", 2);
-	Bureaucrat *d = new Bureaucrat("Xavier", 149);
+public :
+    ShrubberyCreationForm(std::string target);
+    ~ShrubberyCreationForm();
+    void execute(Bureaucrat const & executor) const;
+};
 
-	d->downGrade();
-	d->downGrade();
-	c->incrGrade();
-	c->incrGrade();
-	std::cout << *c << std::endl;
-	std::cout << *b << std::endl;
-	std::cout << *d << std::endl;
-	delete b;
-	delete c;
-	delete d;
-}
+#endif

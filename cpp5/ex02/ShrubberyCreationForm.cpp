@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 11:55:37 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 09:31:03 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/09 13:53:04 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/09 16:47:49 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/Bureaucrat.hpp"
+#include "incs/ShrubberyCreationForm.hpp"
 
-int main()
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 {
-	Bureaucrat *b = new Bureaucrat("Sylvain", 10);
-	Bureaucrat *c = new Bureaucrat("Antoine", 2);
-	Bureaucrat *d = new Bureaucrat("Xavier", 149);
-
-	d->downGrade();
-	d->downGrade();
-	c->incrGrade();
-	c->incrGrade();
-	std::cout << *c << std::endl;
-	std::cout << *b << std::endl;
-	std::cout << *d << std::endl;
-	delete b;
-	delete c;
-	delete d;
+    this->setName(target);
+    this->setGradeSign(145);
+    this->setGradeExecute(137);
+    this->setSign(false);
 }
+
+ShrubberyCreationForm::~ShrubberyCreationForm() {}

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:31:49 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 09:44:40 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:55:43 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 #include <iostream>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
-class Form
+class AForm
 {
 	class GradeTooHighException : public std::exception
 	{
@@ -42,15 +42,21 @@ class Form
 		unsigned int gradeSign;
 		unsigned int gradeExecute;
 	public :
-		Form(std::string name, unsigned int gradeSign, unsigned int gradeExecute);
-		~Form();
-		std::string getName() const;
-		bool getSign() const;
-		unsigned int getGradeSign() const;
-		unsigned int getGradeExecute() const;
-		bool beSigned(Bureaucrat &b);
+        AForm();
+		AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute);
+		~AForm();
+		virtual std::string getName() const = 0;
+		virtual bool getSign() const = 0;
+		virtual unsigned int getGradeSign() const = 0;
+		virtual unsigned int getGradeExecute() const = 0;
+		virtual bool beSigned(Bureaucrat &b) = 0;
+        virtual void execute(Bureaucrat const & executor) const = 0;
+        void    setName(std::string name);
+        void    setGradeSign(unsigned int lvl);
+        void    setGradeExecute(unsigned int lvl);
+        void    setSign(bool value);
 };
 
-std::ostream& operator<<(std::ostream &op, Form const &f);
+std::ostream& operator<<(std::ostream &op, AForm const &f);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:23:57 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 17:23:48 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:44:45 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,12 @@ void	Bureaucrat::downGrade()
 	this->_grade += 1;
 }
 
-void	Bureaucrat::signForm(Form &f)
+void	Bureaucrat::signForm(AForm &f)
 {
-	try
+    if (!f.beSigned(*this))
 	{
-		f.beSigned(this);
+		std::cout << this->getName() << " couln't sign " << f.getName() << '\n';
 	}
-	catch(const GradeTooLowException& e)
-	{
-		std::cout << this->getName() << "couln't sign" << f->getName() << "because" << e.what() << '\n';
-	}
-	std::cout << this->getName() << "signed" << f->getName() << std::endl;
-
+    else
+	    std::cout << this->getName() << " signed " << f.getName() << std::endl;
 }
