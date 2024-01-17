@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:56:04 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:50:45 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ class Brain {
 	public :
 	Brain();
 	~Brain();
+	void set_ideas(std::string idea, int index);
+	std::string get_ideas(int index);
+	void copy_ideas(Brain &brain);
 };
 
 #endif

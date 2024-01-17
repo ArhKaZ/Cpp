@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:30:43 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 15:43:32 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:34:40 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ void	Animal::makeSound() const
 	if (this->type == "Basic")
 		std::cout << "*Bruit sourd*" << std::endl;
 }
+
