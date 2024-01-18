@@ -34,8 +34,6 @@ $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.cpp $(HEAD_A)
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
 
-FORCE			:
-
 clean			:
 				$(RM) $(OBJS) $(OBJS_D)
 

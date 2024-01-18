@@ -1,5 +1,5 @@
 #===========================VARIABLE===============================#
-SRCS			:=	ClapTrap.cpp\
+SRCS			:=	AScalarConverter.cpp \
 					main.cpp\
 
 OBJS_D			:=	objs/
@@ -8,11 +8,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	ClapTrap.hpp\
+HEAD			:=	AScalarConverter.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	claptrap
+NAME			:=	Scalar
 
 #=========================FLAG===============================#
 CC				:=	c++ -std=c++98

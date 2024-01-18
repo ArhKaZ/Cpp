@@ -5,32 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 14:42:03 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/17 21:51:31 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/18 13:23:11 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/18 14:39:02 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/Animal.hpp"
-#include "incs/Cat.hpp"
-#include "incs/Dog.hpp"
-#include "incs/WrongAnimal.hpp"
-#include "incs/WrongCat.hpp"
+#include "incs/AScalarConverter.hpp"
 
 int main()
 {
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	Dog* t = new Dog();
-	const Cat* c = new Cat();
-	c->add_idea("Manger paté", 0);
-	c->add_idea("Manger croquette", 8);
-	const Cat* cp = c;
-	c->print_ideas();
-	cp->print_ideas();
-	delete j;
-	delete i;
-	delete t;
-	delete cp;
-	return 0;
-	return 0;
+    AScalarConverter::convert("c");
+    AScalarConverter::convert("*");
+    AScalarConverter::convert("-20241");
+    AScalarConverter::convert("-5412.23f");
+    AScalarConverter::convert("-5412.23");
+	AScalarConverter::convert("-inff");
+	AScalarConverter::convert("-inf");
+	AScalarConverter::convert("+inff");
+	AScalarConverter::convert("+inffffff");
+	AScalarConverter::convert("+inf");
+	AScalarConverter::convert("nan");
+	AScalarConverter::convert("COCUWDQWDQ");
 }

@@ -23,7 +23,7 @@ HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 NAME			:=	Bureaucrat
 
 #=========================FLAG===============================#
-CC				:=	g++ -std=c++98
+CC				:=	c++ -std=c++98
 
 RM				:=	rm -rf
 
@@ -42,8 +42,6 @@ $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.cpp $(HEAD_A)
 
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
-
-FORCE			:
 
 clean			:
 				$(RM) $(OBJS) $(OBJS_D)

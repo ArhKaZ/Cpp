@@ -17,13 +17,13 @@ HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 NAME			:=	phonebook
 
 #=========================FLAG===============================#
-CC				:=	g++ -std=c++98
+CC				:=	c++ -std=c++98
 
 RM				:=	rm -rf
 
 CFLAGS			:=	-Wall -Wextra -Werror
 
-ASAN_F			:=	-g3 -fsanitize=address
+ASAN_F			:=	-g3 #-fsanitize=address
 
 #========================EXEC===============================#
 all				:	$(NAME)
@@ -36,8 +36,6 @@ $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.cpp $(HEAD_A)
 
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
-
-FORCE			:
 
 clean			:
 				$(RM) $(OBJS) $(OBJS_D)

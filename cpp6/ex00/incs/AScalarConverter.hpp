@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.class.hpp                                :+:      :+:    :+:   */
+/*   AScalarConverter.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 23:42:16 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/18 11:28:32 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/18 10:08:54 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/18 14:25:14 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
-# include "Contact.class.hpp"
-#include <iostream>
-#include <iomanip>
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 #include <string>
-#include <cctype>
+#include <iostream>
+#include <cstdlib>
 
-class Phonebook
+class AScalarConverter
 {
-    public:
-
-    Phonebook( void );
-    ~Phonebook( void );
-    int get_nb_contact( void ) const;
-    void search_contact( void ) const;
-    void add_contact( int );
-    Contact contacts[8];
+private:
+	AScalarConverter();
+	~AScalarConverter();
+public:
+	static void convert(std::string s);
 };
 
 #endif

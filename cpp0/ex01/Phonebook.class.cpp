@@ -6,13 +6,11 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 23:41:25 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/18 13:20:10 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:52:23 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.class.hpp"
-#include <iostream>
-#include <iomanip>
 
 Phonebook::Phonebook( void )
 {
@@ -73,7 +71,7 @@ void Phonebook::add_contact(int index)
 void Phonebook::search_contact( void ) const
 {
     int i;
-
+    std::string input;
     for (i = 0; i < 8; i++)
     {
         if (this->contacts[i].get_first_name().empty() == false)
@@ -88,14 +86,29 @@ void Phonebook::search_contact( void ) const
         }
     }
     std::cout << "Enter the number of the contact you want" << std::endl;
-    std::cin >> i;
-    while (i > 8)
+    std::cin >> input;
+    while (input.length() > 1 || isdigit(input[0]) == 0 || i > this->get_nb_contact() || i > 8)
     {
-        if (i > this->get_nb_contact())
-            std::cout << "Choose a number in the list" << std::endl;
-        else
+        if (input.length() > 1 || isdigit(input[0]) == 0)
+        {
             std::cout << "Choose between 1 and 8 please" << std::endl;
-        std::cin >> i;
+            std::cin >> input;
+        }
+        else
+        {
+            i = (int)input[0] - 48;
+            std::cout << i << std::endl;
+            if (i > this->get_nb_contact())
+            {
+                std::cout << "Choose a number in the list" << std::endl;
+                std::cin >> input;
+            }
+            else if (i > 8)
+            {
+                std::cout << "Choose between 1 and 8 please" << std::endl;
+                std::cin >> input;
+            }
+        }
     }
     std::cout << this->contacts[i - 1].get_first_name() << std::endl;
     std::cout << this->contacts[i - 1].get_last_name() << std::endl;
