@@ -6,19 +6,13 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:16:07 by syluiset          #+#    #+#             */
-/*   Updated: 2023/09/15 13:53:53 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:20:06 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.class.hpp"
 #include <iostream>
 #include <iomanip>
-
-//? Quand je ADD, 5 contact sont detruit donc celui que je viens de construire 
-//! FIX : Quand j'ai passer le tableau contacts de phonebook en public ca n'a plus destroy tout les contacts ect
-
-//? 2ieme cout s'affiche 3 fois apres avoir ajouter un contact
-//! Ca a l'air fix
 
 int main()
 {
@@ -31,6 +25,11 @@ int main()
     {
         std::cout << "Please, choose one of the functionnality between ADD, SEARCH AND EXIT" << std::endl;
         std::cin >> user_choice;
+        if (!std::cin)
+        {
+            std::cout << "Error with the cin, program exiting" << std::endl;
+            return (1);
+        }
         if (user_choice == "ADD")
         {
             contact_number = ph_book.get_nb_contact();

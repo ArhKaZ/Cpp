@@ -14,7 +14,7 @@ HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 NAME			:=	HTIB
 
 #=========================FLAG===============================#
-CC				:=	g++ -std=c++98
+CC				:=	c++ -std=c++98
 
 RM				:=	rm -rf
 

@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 23:41:25 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/18 11:52:23 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/19 12:26:58 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ Phonebook::Phonebook( void )
 Phonebook::~Phonebook( void )
 {
     return ;
+}
+
+void    exit_error()
+{
+    std::cout << "error with cin, program exiting" << std::endl;
+    exit(1);
 }
 
 int Phonebook::get_nb_contact( void ) const 
@@ -52,15 +58,24 @@ void Phonebook::add_contact(int index)
     std::cout << "Let's get the information about the new contact" << std::endl;
     std::cout << "Enter the first name" << std::endl;
     std::cin >> first_name;
+    if (!std::cin)
+        exit_error();
     std::cout << "Enter the last name" << std::endl;
     std::cin >> last_name;
+    if (!std::cin)
+        exit_error();
     std::cout << "Enter the nickname" << std::endl;
     std::cin >> nickname;
+    if (!std::cin)
+        exit_error();
     std::cout << "Enter the phone number" << std::endl;
     std::cin >> phone_number;
+    if (!std::cin)
+        exit_error();
     std::cout << "Enter the darkest secret" << std::endl;
     std::cin >> dark_secret;
-
+    if (!std::cin)
+        exit_error();
     this->contacts[index].set_first_name(first_name);
     this->contacts[index].set_last_name(last_name);
     this->contacts[index].set_nickname(nickname);
@@ -85,28 +100,40 @@ void Phonebook::search_contact( void ) const
 			std::cout << "| " << std::endl;
         }
     }
+    if (get_nb_contact() == 0)
+    {
+        std::cout << "There is 0 contact\nBack to main menu" << std::endl;
+        return ;
+    }
     std::cout << "Enter the number of the contact you want" << std::endl;
     std::cin >> input;
+    if (!std::cin)
+        exit_error();
     while (input.length() > 1 || isdigit(input[0]) == 0 || i > this->get_nb_contact() || i > 8)
     {
         if (input.length() > 1 || isdigit(input[0]) == 0)
         {
             std::cout << "Choose between 1 and 8 please" << std::endl;
             std::cin >> input;
+            if (!std::cin)
+                exit_error();
         }
         else
         {
             i = (int)input[0] - 48;
-            std::cout << i << std::endl;
             if (i > this->get_nb_contact())
             {
                 std::cout << "Choose a number in the list" << std::endl;
                 std::cin >> input;
+                if (!std::cin)
+                    exit_error();
             }
-            else if (i > 8)
+            else if (i > 8 || i <= 0)
             {
                 std::cout << "Choose between 1 and 8 please" << std::endl;
                 std::cin >> input;
+                if (!std::cin)
+                    exit_error();
             }
         }
     }
