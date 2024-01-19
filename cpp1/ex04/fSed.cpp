@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:06:47 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 14:23:15 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/20 00:29:52 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void    fSed(char **argv)
     std::ifstream filein(filename.c_str());
     if (filein.is_open())
     {
+        if (!std::getline(filein, line))
+        {
+            std::cout << "The file is empty" << std::endl;
+			filein.close();
+            exit(1);
+        }
         filename_out = filename + ".replace";
         std::ofstream fileout(filename_out.c_str());
         if (fileout.is_open())

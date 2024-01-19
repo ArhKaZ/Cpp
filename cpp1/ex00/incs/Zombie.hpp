@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:50:36 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/20 00:13:39 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 
 class Zombie
 {
+private:
+	std::string _name;
 public:
-	Zombie();
 	Zombie(const std::string name);
 	~Zombie();
 	void announce( void ) const ;
-private:
-	std::string _name;
 };
 
 #endif

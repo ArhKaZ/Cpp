@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:12:06 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/20 00:26:45 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 void fSed(char **argv);
 #endif

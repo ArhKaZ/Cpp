@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:26:46 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 17:23:06 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/20 00:35:47 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ Harl::~Harl(void)
 
 void Harl::complain(std::string level)
 {
-    // t_alert alerts[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     int i = 0;
     while (i < 4 && levels[i].compare(level))

@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:21:36 by syluiset          #+#    #+#             */
-/*   Updated: 2023/11/27 14:14:32 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/20 00:21:21 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        std::cout << "Not good arguments" << std::endl;
+        std::cout << "Need 3 arguments" << std::endl;
     }
     return (0);
 }

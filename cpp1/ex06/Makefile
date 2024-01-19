@@ -6,7 +6,7 @@ OBJS_D			:=	objs/
 
 OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
-NAME			:=	Harl
+NAME			:=	harlFilter
 
 HEAD_D			:=	incs/
 
