@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 23:42:16 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/18 11:28:32 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:04:19 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class Phonebook
     void search_contact( void ) const;
     void add_contact( int );
     Contact contacts[8];
+    static void printLine( void );
+    static void printHeader( std::string head );
 };
 
 #endif
