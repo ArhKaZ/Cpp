@@ -1,8 +1,7 @@
 #===========================VARIABLE===============================#
-SRCS			:=	ClapTrap.cpp \
-					main.cpp \
-					ScavTrap.cpp \
-					FragTrap.cpp \
+SRCS			:=	ASerializer.cpp \
+					Data.cpp\
+					main.cpp\
 
 OBJS_D			:=	objs/
 
@@ -10,13 +9,12 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	ClapTrap.hpp \
-					ScavTrap.hpp \
-					FragTrap.hpp \
+HEAD			:=	ASerializer.hpp\
+					Data.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	ClapTrap
+NAME			:=	Serialize
 
 #=========================FLAG===============================#
 CC				:=	c++ -std=c++98
@@ -38,8 +36,6 @@ $(OBJS)			:	$(OBJS_D)%.o: $(SRCS_D)%.cpp $(HEAD_A)
 
 $(OBJS_D)		:
 				mkdir -p $(OBJS_D)
-
-FORCE			:
 
 clean			:
 				$(RM) $(OBJS) $(OBJS_D)

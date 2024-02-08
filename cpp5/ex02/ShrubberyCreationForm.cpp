@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:53:04 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 10:58:46 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:29:43 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
     this->setSign(false);
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm() {}
+ShrubberyCreationForm::~ShrubberyCreationForm()
+{
+    return;
+}
 
 void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
@@ -61,4 +64,26 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     {
          std::cout << e.what() << std::endl;
     }
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm()
+{
+    return;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf)
+{
+    this->setName(scf.getName());
+    this->setSign(scf.getSign());
+    this->setGradeExecute(scf.getGradeExecute());
+    this->setGradeSign(scf.getGradeSign());
+}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &scf)
+{
+    this->setName(scf.getName());
+    this->setSign(scf.getSign());
+    this->setGradeExecute(scf.getGradeExecute());
+    this->setGradeSign(scf.getGradeSign());
+    return *this;
 }

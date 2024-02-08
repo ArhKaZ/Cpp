@@ -15,12 +15,12 @@
 Dog::Dog() : Animal()
 {
 	this->type = "Dog";
-	std::cout << "Constructor of type " << this->type << std::endl;
+	std::cout << "Constructor of type Dog" << std::endl;
 }
 
 Dog::~Dog()
 {
-		std::cout << "Destructor of type " << this->type << std::endl;
+		std::cout << "Destructor of type Dog" << this->type << std::endl;
 }
 
 void	Dog::makeSound(void) const

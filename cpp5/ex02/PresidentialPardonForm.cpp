@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:02:22 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 16:47:49 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:29:42 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,28 @@ void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
     }
 }
 
-PresidentialPardonForm::~PresidentialPardonForm() {}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &pdf)
+{
+    this->setName(pdf.getName());
+    this->setSign(pdf.getSign());
+    this->setGradeExecute(pdf.getGradeExecute());
+    this->setGradeSign(pdf.getGradeSign());
+}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &pdf)
+{
+    this->setName(pdf.getName());
+    this->setSign(pdf.getSign());
+    this->setGradeExecute(pdf.getGradeExecute());
+    this->setGradeSign(pdf.getGradeSign());
+    return *this;
+}
+
+PresidentialPardonForm::PresidentialPardonForm()
+{
+    return;
+}
+
+PresidentialPardonForm::~PresidentialPardonForm() {
+    return;
+}

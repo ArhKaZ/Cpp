@@ -5,25 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 13:38:46 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/05 14:18:18 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/23 12:53:25 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/23 13:12:17 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/ScavTrap.hpp"
-#include "incs/FragTrap.hpp"
+#include "incs/Data.hpp"
+#include "incs/ASerializer.hpp"
 
 int main()
 {
-	ClapTrap ct1("sisi");
-	ScavTrap st1("robot");
-	FragTrap ft1("bonGars");
-	ct1.attack(st1.getName());
-	st1.takeDamage(ct1.getad());
-	st1.beRepaired(30);
-	st1.attack(ct1.getName());
-	ct1.takeDamage(st1.getad());
-	st1.guardGate();
-	ft1.highFivesGuys();
-	return (0);
+	Data d1(5123);
+	Data d2(-125);
+	int	i = 24123;
+
+	std::cout << "Before serialize : " << d1.get_value() << std::endl;
+	std::cout << "After serialize : " << ASerializer::serialize(&d1) << std::endl;
+	std::cout << "Before serialize : " << d2.get_value() << std::endl;
+	std::cout << "After serialize : " << ASerializer::serialize(&d1) << std::endl;
+	std::cout << "Before deserialize : " << i << std::endl;
+	std::cout << "After deserialize : " << ASerializer::deserialize(i) << std::endl;
 }

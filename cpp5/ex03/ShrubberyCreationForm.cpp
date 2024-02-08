@@ -20,7 +20,10 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
     this->setSign(false);
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm() {}
+ShrubberyCreationForm::~ShrubberyCreationForm()
+{
+    return;
+}
 
 void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
@@ -61,4 +64,26 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     {
          std::cout << e.what() << std::endl;
     }
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm()
+{
+    return;
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf)
+{
+    this->setName(scf.getName());
+    this->setSign(scf.getSign());
+    this->setGradeExecute(scf.getGradeExecute());
+    this->setGradeSign(scf.getGradeSign());
+}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &scf)
+{
+    this->setName(scf.getName());
+    this->setSign(scf.getSign());
+    this->setGradeExecute(scf.getGradeExecute());
+    this->setGradeSign(scf.getGradeSign());
+    return *this;
 }

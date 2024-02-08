@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:57:03 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 16:47:49 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:36:59 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ class RobotomyRequestForm : public AForm
     class RobotomyException : public std::exception
     {
     public:
-        std::string what()
+        virtual const char* what() const throw()
         {
             return "You are not allowed to Robotomy this form";
         }
     };
 public:
+    RobotomyRequestForm();
+    RobotomyRequestForm(const RobotomyRequestForm &rrf);
+    RobotomyRequestForm& operator=(const RobotomyRequestForm &rrf);
     RobotomyRequestForm(std::string target);
     ~RobotomyRequestForm();
     void    execute(Bureaucrat const & executor) const;

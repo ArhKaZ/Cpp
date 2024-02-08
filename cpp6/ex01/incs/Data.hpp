@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/05 14:20:53 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/08 14:32:11 by syluiset         ###   ########.fr       */
+/*   Created: 2024/01/23 12:38:13 by syluiset          #+#    #+#             */
+/*   Updated: 2024/01/23 12:41:15 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DATA_HPP
+#define DATA_HPP
 
-#ifndef DIAMONDTRAP_HPP
-#define DIAMONDTRAP_HPP
-#include "ClapTrap.hpp"
-#include "FragTrap.hpp"
-#include "ScavTrap.hpp"
-
-class DiamondTrap : public FragTrap, public ScavTrap
+class Data
 {
-	private :
-	std::string _name;
+private:
+	int _value;
+public:
+	Data();
+	Data(int value);
+	~Data();
+	int get_value();
 };
 
 #endif

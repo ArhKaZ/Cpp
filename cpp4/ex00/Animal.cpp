@@ -15,12 +15,12 @@
 Animal::Animal()
 {
 	this->type = "Basic";
-	std::cout << "Constructor of type " << this->type << std::endl;
+	std::cout << "Constructor of type Animal" << std::endl;
 }
 
 Animal::~Animal()
 {
-	std::cout << "Destructor of type " << this->type << std::endl;
+	std::cout << "Destructor of type Animal" << this->type << std::endl;
 }
 
 std::string Animal::getType() const

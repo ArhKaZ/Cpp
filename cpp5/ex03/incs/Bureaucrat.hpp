@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:22:00 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 09:43:05 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:36:59 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Bureaucrat
 	class GradeTooHighException : public std::exception
 	{
 		public:
-		std::string what()
+        virtual const char* what() const throw()
 		{
 			return "Grade is too high";
 		}
@@ -31,7 +31,7 @@ class Bureaucrat
 	class GradeTooLowException : public std::exception
 	{
 		public:
-		std::string what()
+        virtual const char* what() const throw()
 		{
 			return "Grade is too low";
 		}
@@ -42,6 +42,9 @@ class Bureaucrat
 		std::string _name;
 		unsigned int _grade;
 	public:
+        Bureaucrat();
+        Bureaucrat& operator = (const Bureaucrat &bureaucrat);
+        Bureaucrat(const Bureaucrat &bureaucrat);
 		Bureaucrat(std::string name, unsigned int grade);
 		~Bureaucrat();
 		void	signForm(AForm &f);

@@ -20,7 +20,10 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target)
     this->setSign(false);
 }
 
-RobotomyRequestForm::~RobotomyRequestForm() {}
+RobotomyRequestForm::~RobotomyRequestForm()
+{
+    return;
+}
 
 void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
@@ -51,4 +54,26 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
     {
         std::cout << e.what() << std::endl;
     }
+}
+
+RobotomyRequestForm::RobotomyRequestForm()
+{
+    return;
+}
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf)
+{
+    this->setName(rrf.getName());
+    this->setSign(rrf.getSign());
+    this->setGradeExecute(rrf.getGradeExecute());
+    this->setGradeSign(rrf.getGradeSign());
+}
+
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &rrf)
+{
+    this->setName(rrf.getName());
+    this->setSign(rrf.getSign());
+    this->setGradeExecute(rrf.getGradeExecute());
+    this->setGradeSign(rrf.getGradeSign());
+    return *this;
 }

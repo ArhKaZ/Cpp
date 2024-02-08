@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:07:21 by syluiset          #+#    #+#             */
-/*   Updated: 2023/12/06 11:57:13 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:09:04 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Fixed::Fixed(const float nb) : _value( roundf(nb * (1 << _nb_fra)))
 Fixed::Fixed(const Fixed &f)
 {
     std::cout << "Copy constructor called" << std::endl;
-    this->_value = f.getRawBits();
+    *this = f;
 }
 
 Fixed &Fixed::operator=(const Fixed &f)
@@ -48,7 +48,6 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return (this->_value);
 }
 

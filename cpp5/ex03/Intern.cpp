@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:34:06 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 15:07:46 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:44:16 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ AForm *Intern::makeForm(std::string formType, std::string target)
             std::cout << formType << " don't exist " << std::endl;
     }
     return (NULL);
+}
+
+Intern::Intern(const Intern &intern)
+{
+    (void)intern;
+    return;
+}
+
+Intern& Intern::operator=(const Intern &intern)
+{
+    (void)intern;
+    return *this;
 }

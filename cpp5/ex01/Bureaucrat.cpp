@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:23:57 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 13:44:45 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:53:30 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@ std::ostream &operator<<(std::ostream &op, Bureaucrat const &b)
 {
 	op << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
 	return (op);
+}
+
+Bureaucrat::Bureaucrat()
+{
+    return ;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
+{
+    this->_grade = bureaucrat._grade;
+    this->_name = bureaucrat._name;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
+{
+    this->_grade = bureaucrat._grade;
+    this->_name = bureaucrat._name;
+    return *this;
 }
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade)
@@ -45,7 +63,7 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade)
 
 Bureaucrat::~Bureaucrat()
 {
-
+    return ;
 }
 
 std::string Bureaucrat::getName() const
@@ -90,7 +108,7 @@ void	Bureaucrat::downGrade()
 	this->_grade += 1;
 }
 
-void	Bureaucrat::signForm(AForm &f)
+void	Bureaucrat::signForm(Form &f)
 {
     if (!f.beSigned(*this))
 	{

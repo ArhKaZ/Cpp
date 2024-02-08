@@ -12,36 +12,30 @@
 
 #include "incs/AForm.hpp"
 
-//AForm::AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute)
-//{
-//	try
-//	{
-//		if (gradeSign > 150)
-//			throw GradeTooLowException();
-//		if (gradeSign < 1)
-//			throw GradeTooHighException();
-//		else
-//		{
-//			this->name = name;
-//			this->gradeSign = gradeSign;
-//			this->gradeExecute = gradeExecute;
-//			this->sign = false;
-//		}
-//	}
-//	catch (AForm::GradeTooLowException& e)
-//	{
-//		std::cout << e.what() << std::endl;
-//	}
-//	catch (AForm::GradeTooHighException& e)
-//	{
-//		std::cout << e.what() << std::endl;
-//	}
-//}
-
-AForm::AForm(){}
+AForm::AForm()
+{
+    return;
+}
 AForm::~AForm()
 {
+    return;
+}
 
+AForm::AForm(const AForm &form)
+{
+    this->sign = form.sign;
+    this->gradeSign = form.gradeSign;
+    this->gradeExecute = form.gradeExecute;
+    this->name = form.name;
+}
+
+AForm &AForm::operator=(const AForm &form)
+{
+    this->sign = form.sign;
+    this->gradeSign = form.gradeSign;
+    this->gradeExecute = form.gradeExecute;
+    this->name = form.name;
+    return *this;
 }
 
 std::string AForm::getName() const

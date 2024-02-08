@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:31:49 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 10:38:42 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:36:59 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class AForm
 	class GradeTooHighException : public std::exception
 	{
 		public:
-		std::string what()
+        virtual const char* what() const throw()
 		{
 			return "Grade Form is too high";
 		}
@@ -30,7 +30,7 @@ class AForm
 	class GradeTooLowException : public std::exception
 	{
 		public:
-		std::string what()
+        virtual const char* what() const throw()
 		{
 			return "Grade Form is too low";
 		}
@@ -43,7 +43,7 @@ class AForm
 		unsigned int gradeExecute;
 	public :
         AForm();
-//		AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute);
+        AForm(const AForm &form);
 		virtual ~AForm();
         std::string getName() const;
 		bool getSign() const;
@@ -55,6 +55,7 @@ class AForm
         void    setGradeSign(unsigned int lvl);
         void    setGradeExecute(unsigned int lvl);
         void    setSign(bool value);
+        AForm &operator = (const AForm &form);
 };
 
 std::ostream& operator<<(std::ostream &op, AForm const &f);

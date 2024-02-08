@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:01:03 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 10:36:13 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:34:10 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@ class PresidentialPardonForm : public AForm
     class PardonException : public std::exception
     {
     public:
-        std::string what()
+        virtual const char* what() const throw()
         {
             return "You are not allowed to Pardon";
         }
     };
 public:
+    PresidentialPardonForm();
+    PresidentialPardonForm(const PresidentialPardonForm &pdf);
     PresidentialPardonForm(std::string target);
     ~PresidentialPardonForm();
     void    execute(Bureaucrat const & executor) const;
+    PresidentialPardonForm& operator=(const PresidentialPardonForm &pdf);
 };
 
 #endif

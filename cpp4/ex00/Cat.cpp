@@ -15,12 +15,12 @@
 Cat::Cat() : Animal()
 {
 	this->type = "Cat";
-	std::cout << "Constructor of type " << this->type << std::endl;
+	std::cout << "Constructor of type Cat" << this->type << std::endl;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Destructor of type " << this->type << std::endl;
+	std::cout << "Destructor of type Cat" << this->type << std::endl;
 }
 
 void	Cat::makeSound(void) const

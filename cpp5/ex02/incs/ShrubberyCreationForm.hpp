@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:51:17 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 10:23:53 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:29:43 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class ShrubberyCreationForm : public AForm
     class ShrubberyException : public std::exception
     {
     public:
-        std::string what()
+        virtual const char* what() const throw()
         {
             return "You are not allowed to get a shrubbery";
         }
@@ -28,6 +28,9 @@ public :
     ShrubberyCreationForm(std::string target);
     ~ShrubberyCreationForm();
     void execute(Bureaucrat const & executor) const;
+    ShrubberyCreationForm();
+    ShrubberyCreationForm(const ShrubberyCreationForm &scf);
+    ShrubberyCreationForm& operator=(const ShrubberyCreationForm &scf);
 };
 
 #endif

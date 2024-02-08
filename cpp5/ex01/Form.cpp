@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:36:09 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 13:40:41 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:14:12 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,31 @@ Form::Form(std::string name, unsigned int gradeSign, unsigned int gradeExecute)
 	}
 }
 
+Form::Form(const Form &form)
+{
+    this->sign = form.sign;
+    this->gradeSign = form.gradeSign;
+    this->gradeExecute = form.gradeExecute;
+    this->name = form.name;
+}
+
+Form &Form::operator=(const Form &form)
+{
+    this->sign = form.sign;
+    this->gradeSign = form.gradeSign;
+    this->gradeExecute = form.gradeExecute;
+    this->name = form.name;
+    return *this;
+}
+
+Form::Form()
+{
+    return;
+}
+
 Form::~Form()
 {
-
+    return;
 }
 
 std::string Form::getName() const
@@ -65,7 +87,7 @@ unsigned int Form::getGradeSign() const
 
 std::ostream& operator<<(std::ostream &op, Form const &f)
 {
-	op << "Name : " << f.getName() << ", signed : " << f.getSign() << ", grade sign : " << f.getGradeSign() << " and grade execute : " << f.getGradeExecute();
+	op << "Name : " << f.getName() << ", signed : " << f.getSign() << ", grade sign : " << f.getGradeSign() << " and grade execute : " << f.getGradeExecute() << std::endl;
 	return (op);
 }
 

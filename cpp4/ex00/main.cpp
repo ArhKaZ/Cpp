@@ -31,5 +31,11 @@ int main()
 	std::cout << wrongi->getType() << " " << std::endl;
 	wrongmeta->makeSound();
 	wrongi->makeSound();
+
+	delete meta;
+	delete j;
+	delete i;
+	delete wrongmeta;
+	delete wrongi;
 	return 0;
 }

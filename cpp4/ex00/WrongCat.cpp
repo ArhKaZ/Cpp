@@ -15,11 +15,11 @@
 WrongCat::WrongCat() : WrongAnimal()
 {
 	this->type = "WrongCat";
-	std::cout << "Constructor of type " << this->type << std::endl;
+	std::cout << "Constructor of type WrongCat" << std::endl;
 }
 
 WrongCat::~WrongCat()
 {
-	std::cout << "Destructor of type " << this->type << std::endl;
+	std::cout << "Destructor of type WrongCat" << std::endl;
 }
 

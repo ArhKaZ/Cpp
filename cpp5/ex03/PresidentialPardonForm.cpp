@@ -12,7 +12,7 @@
 
 #include "incs/PresidentialPardonForm.hpp"
 #include "incs/AForm.hpp"
-#include <cstdlib>
+
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
 {
@@ -40,4 +40,28 @@ void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
     }
 }
 
-PresidentialPardonForm::~PresidentialPardonForm() {}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &pdf)
+{
+    this->setName(pdf.getName());
+    this->setSign(pdf.getSign());
+    this->setGradeExecute(pdf.getGradeExecute());
+    this->setGradeSign(pdf.getGradeSign());
+}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &pdf)
+{
+    this->setName(pdf.getName());
+    this->setSign(pdf.getSign());
+    this->setGradeExecute(pdf.getGradeExecute());
+    this->setGradeSign(pdf.getGradeSign());
+    return *this;
+}
+
+PresidentialPardonForm::PresidentialPardonForm()
+{
+    return;
+}
+
+PresidentialPardonForm::~PresidentialPardonForm() {
+    return;
+}

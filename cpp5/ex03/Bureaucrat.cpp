@@ -45,7 +45,25 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade)
 
 Bureaucrat::~Bureaucrat()
 {
+    return;
+}
 
+Bureaucrat::Bureaucrat()
+{
+    return ;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
+{
+    this->_grade = bureaucrat._grade;
+    this->_name = bureaucrat._name;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
+{
+    this->_grade = bureaucrat._grade;
+    this->_name = bureaucrat._name;
+    return *this;
 }
 
 std::string Bureaucrat::getName() const
