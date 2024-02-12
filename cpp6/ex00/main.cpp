@@ -6,24 +6,15 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:23:11 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/18 14:39:02 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:33:36 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "incs/AScalarConverter.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-    AScalarConverter::convert("c");
-    AScalarConverter::convert("*");
-    AScalarConverter::convert("-20241");
-    AScalarConverter::convert("-5412.23f");
-    AScalarConverter::convert("-5412.23");
-	AScalarConverter::convert("-inff");
-	AScalarConverter::convert("-inf");
-	AScalarConverter::convert("+inff");
-	AScalarConverter::convert("+inffffff");
-	AScalarConverter::convert("+inf");
-	AScalarConverter::convert("nan");
-	AScalarConverter::convert("COCUWDQWDQ");
+    if (argc == 2)
+        AScalarConverter::convert(argv[1]);
+    return (0);
 }
