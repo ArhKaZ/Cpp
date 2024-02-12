@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:18:42 by syluiset          #+#    #+#             */
-/*   Updated: 2024/02/12 14:42:37 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:29:12 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void    display_char(std::string s, int type)
     char char_display;
     long int tmp;
 
+    if (s[1])
+    {
+        std::cout << "Impossible" << std::endl;
+        return ;
+    }
     if (type != 1)
     {
         tmp = std::strtol(s.c_str(), NULL, 10);
@@ -70,26 +75,35 @@ void display_int(std::string s, int type)
     int int_display;
     long int tmp;
 
-    (void)type;
-    tmp = std::strtol(s.c_str(), NULL, 10);
-    int_display = static_cast<int>(tmp);
-    std::cout << int_display << std::endl;
+    if (type == 1 && s[1])
+        std::cout << "int: Non displayable" << std::endl;
+    else
+    {
+        tmp = std::strtol(s.c_str(), NULL, 10);
+        int_display = static_cast<int>(tmp);
+        std::cout << "int: " << int_display << std::endl;
+    }
 }
 
 void    display_float(std::string s, int type)
 {
     float float_display;
     double double_display;
-    (void) type;
-    if (s.compare("-inff") == 0)
+    (void)type;
+    std::cout << "float: ";
+    if (s.compare("-inff") == 0 || s.compare("-inf") == 0)
     {
         std::cout << "-inff" << std::endl;
         return ;
     }
-    else if (s.compare("+inff") == 0)
+    else if (s.compare("+inff") == 0 || s.compare("+inf") == 0)
     {
         std::cout << "+inff" << std::endl;
         return ;
+    }
+    else if (s.compare("nan") == 0 || s.compare("nanf") == 0)
+    {
+        std::cout << "nanf" << std::endl;
     }
     else
     {
@@ -105,17 +119,18 @@ void    display_double(std::string s, int type)
     double double_display;
 
     (void)type;
-    if (s.compare("-inf") == 0)
+    std::cout << "double: ";
+    if (s.compare("-inf") == 0 || s.compare("-inff") == 0)
     {
         std::cout << "-inf" << std::endl;
         return ;
     }
-    else if (s.compare("+inf") == 0)
+    else if (s.compare("+inf") == 0 || s.compare("+inff") == 0)
     {
         std::cout << "+inf" << std::endl;
         return ;
     }
-    else if (s.compare("nan") == 0)
+    else if (s.compare("nan") == 0 || s.compare("nanf") == 0)
     {
         std::cout << "nan" << std::endl;
         return ;
@@ -136,6 +151,12 @@ void AScalarConverter::convert(std::string s)
     type = 0;
     if ((s[0] >= 65 && s[0] <= 90 )|| (s[0] >= 97 && s[0] <= 122))
         type = 1;
+    if (s[1] && (s.compare("nan") != 0 && s.compare("nanf") != 0 && s.compare("+inf") != 0
+        && s.compare("+inff") != 0 && s.compare("-inf") != 0 && s.compare("-inff") != 0))
+    {
+        std::cout << "error with the string it have to convert." << std::endl;
+        return ;
+    }
     if ((s[0] >= 48 && s[0] <= 57) || (s[0] == '-' && s[1] >= 48 && s[1] <= 57) || (s[0] == '+' && s[1] >= 48 && s[1] <= 57))
     {
         nb_dot = nb_dot_in_string(s);
@@ -162,5 +183,4 @@ void AScalarConverter::convert(std::string s)
     display_int(s, type);
     display_float(s, type);
     display_double(s, type);
-	std::cout << "error with the string it have to convert." << std::endl;
 }
