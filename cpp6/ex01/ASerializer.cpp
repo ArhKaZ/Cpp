@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:35:42 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/23 12:52:53 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:41:52 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 Data* ASerializer::deserialize(uintptr_t raw)
 {
-	return (Data(*raw));
+	return (reinterpret_cast<Data *>(raw));
 }
 
 uintptr_t ASerializer::serialize(Data *ptr)
 {
-	return (&<static_cast>(int)ptr->get_value());
+	return (reinterpret_cast<uintptr_t>(ptr));
 }

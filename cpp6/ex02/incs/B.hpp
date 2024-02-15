@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ASerializer.hpp                                    :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 12:35:55 by syluiset          #+#    #+#             */
-/*   Updated: 2024/02/15 13:40:32 by syluiset         ###   ########.fr       */
+/*   Created: 2024/02/15 15:06:37 by syluiset          #+#    #+#             */
+/*   Updated: 2024/02/15 15:45:48 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASERIALIZER_HPP
-#define ASERIALIZER_HPP
-#include "Data.hpp"
-#include <stdint.h>
-#include <iostream>
-class ASerializer
+#ifndef B_HPP
+#define B_HPP
+#include "Base.hpp"
+
+class B : public TypeBase
 {
 public:
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
+	B();
+	~B();
 };
 
 #endif

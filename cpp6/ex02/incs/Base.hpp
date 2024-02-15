@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ASerializer.hpp                                    :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 12:35:55 by syluiset          #+#    #+#             */
-/*   Updated: 2024/02/15 13:40:32 by syluiset         ###   ########.fr       */
+/*   Created: 2024/02/15 15:03:09 by syluiset          #+#    #+#             */
+/*   Updated: 2024/02/15 16:36:46 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASERIALIZER_HPP
-#define ASERIALIZER_HPP
-#include "Data.hpp"
-#include <stdint.h>
+#ifndef BASE_HPP
+#define BASE_HPP
 #include <iostream>
-class ASerializer
+#include <stdlib.h>
+#include <time.h>
+
+class TypeBase
 {
 public:
-	static uintptr_t serialize(Data* ptr);
-	static Data* deserialize(uintptr_t raw);
+	virtual ~TypeBase();
+	TypeBase* generate(void);
+	void identify(TypeBase* p);
+	void identify(TypeBase& p);
 };
 
 #endif

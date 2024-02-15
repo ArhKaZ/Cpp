@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:38:13 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/23 12:41:15 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:47:29 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 class Data
 {
 private:
-	int _value;
+	unsigned long _value;
 public:
 	Data();
-	Data(int value);
+	Data(unsigned long value);
+	Data(const Data &Data);
+	Data& operator=(const Data &Data);
 	~Data();
-	int get_value();
+	unsigned long get_value();
 };
 
 #endif

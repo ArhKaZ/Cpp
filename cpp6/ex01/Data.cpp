@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:42:05 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/23 12:45:03 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:47:23 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,21 @@ Data::~Data()
 	return;
 }
 
-Data::Data(int value) {
+Data::Data(const Data &Data)
+{
+	this->_value = Data._value;
+}
+
+Data &Data::operator=(const Data &Data)
+{
+	this->_value = Data._value;
+	return *this;
+}
+
+Data::Data(unsigned long value) {
 	this->_value = value;
 }
 
-int Data::get_value() {
+unsigned long Data::get_value() {
 	return (this->_value);
 }
