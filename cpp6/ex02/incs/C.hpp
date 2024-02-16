@@ -16,9 +16,6 @@
 
 class C : public TypeBase
 {
-public:
-	C();
-	~C();
 };
 
 #endif

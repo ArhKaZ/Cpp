@@ -1,6 +1,5 @@
 #===========================VARIABLE===============================#
-SRCS			:=	Base.cpp\
-					main.cpp\
+SRCS			:=	main.cpp\
 
 OBJS_D			:=	objs/
 
@@ -8,14 +7,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	A.hpp\
-					B.hpp\
-					C.hpp\
-					Base.hpp\
+HEAD			:=	Array.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	Identify
+NAME			:=	ArrayTemplate
 
 #=========================FLAG===============================#
 CC				:=	c++ -std=c++98

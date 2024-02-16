@@ -16,9 +16,6 @@
 
 class A : public TypeBase
 {
-public:
-	A();
-	~A();
 };
 
 #endif

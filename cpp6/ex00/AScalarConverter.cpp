@@ -185,14 +185,19 @@ void AScalarConverter::convert(std::string s)
 	bool is_physic = false;
 	int nb_dot = 0;
 
+	if (nb_f_in_string(s) > 1)
+	{
+		std::cout << "Too much 'f' in the value" << std::endl;
+		return (1);
+	}
 	if (check_inf_and_nan(s) != 0)
 		is_physic = true;
 	else
 		nb_dot = nb_dot_in_string(s);
 	if (nb_dot > 1)
 	{
-		std::cout << "Too much dot on the value" << std::endl;
-		return ;
+		std::cout << "Too much dot in the value" << std::endl;
+		return (1);
 	}
     display_char(s, is_physic, nb_dot);
     display_int(s, is_physic, nb_dot);
