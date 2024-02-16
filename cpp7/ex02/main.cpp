@@ -10,7 +10,7 @@ int main(int, char**)
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
-    {
+	{
         const int value = rand();
         numbers[i] = value;
         mirror[i] = value;
@@ -45,7 +45,6 @@ int main(int, char**)
     {
         std::cerr << e.what() << '\n';
     }
-
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();

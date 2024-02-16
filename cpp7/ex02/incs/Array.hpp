@@ -12,48 +12,60 @@
 
 #ifndef CPP_ARRAY_HPP
 #define CPP_ARRAY_HPP
+#include "iostream"
 
 template<typename T>
 class Array
 {
+class IndexOutOfRange : public std::exception
+	{
+	public:
+		virtual const char* what() const throw()
+		{
+			return "Index is out of range !";
+		}
+	};
 public:
 	Array(){}
-	~Array(){}
-	Array(unsigned int n)
+	~Array()
 	{
-		this->_tab = new T[n];
+		delete[] _tab;
+	}
+	Array(unsigned int n) : _size(n)
+	{
+		this->_tab = new T[n]();
 		return ;
 	}
-	Array(T const tab[])
+	Array(const Array& Array)
 	{
-		size_t size = sizeof(*tab) / sizeof(tab[0]);
-		for(int i = 0; i < size; i++)
+		this->_tab = new T[Array._size];
+		for(unsigned int i = 0; i < Array._size; i++)
 		{
-			this->_tab[i] = tab[i];
+			this->_tab[i] = Array._tab[i];
 		}
 	}
-	T* operator=(T const tab[])
+	Array& operator=(const Array & Array)
 	{
-		size_t size = sizeof(*tab) / sizeof(tab[0]);
-		for(int i = 0; i < size; i++)
+		for(unsigned int i = 0; i < Array._size; i++)
 		{
-			this->_tab[i] = tab[i];
+			this->_tab[i] = Array._tab[i];
 		}
 		return *this;
 	}
 	T& operator[](int x)
 	{
-			if (x < 0 || static_cast<size_t>(x) > sizeof(*this->_tab) / sizeof(this->_tab[0]))
-				throw std::exception();
+			if (x < 0 || static_cast<size_t>(x) >= this->_size)
+				throw IndexOutOfRange();
 			else
 				return this->_tab[x];
 	}
 	size_t size()
 	{
-		return (sizeof(*this->_tab) / sizeof(this->_tab[0]));
+		return (_size);
 	}
 private:
 	T *_tab;
+	unsigned int _size;
 };
 
 #endif
