@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 15:40:26 by syluiset          #+#    #+#             */
-/*   Updated: 2024/02/20 16:11:21 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:22:22 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ public:
 	void addNumber(int nb);
 	int shortestSpan();
 	int longestSpan();
+	void addSeveralNumber(Span &sp, unsigned int begin, unsigned int end);
+	std::list<int> getList();
 private:
 	std::list<int> _lst;
 	unsigned int _max;

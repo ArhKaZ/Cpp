@@ -1,5 +1,6 @@
 #===========================VARIABLE===============================#
 SRCS			:=	main.cpp\
+					Span.cpp\
 
 OBJS_D			:=	objs/
 
@@ -7,7 +8,7 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	easyfind.hpp\
+HEAD			:=	Span.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
