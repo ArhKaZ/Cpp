@@ -48,7 +48,7 @@ Span& Span::operator=(const Span &s)
 void Span::addNumber(int nb)
 {
 	if (this->_lst.size() == this->_max)
-		throw std::exception();
+		throw AddToMuchNb();
 	else
 	{
 		this->_lst.push_back(nb);
@@ -57,59 +57,87 @@ void Span::addNumber(int nb)
 
 int Span::longestSpan()
 {
-	if (this->_lst.size() == 0 || this->_lst.size() == 1)
-		throw std::exception();
-	else
-	{
-		int dist = 0;
-		int temp = 0;
-		std::list<int>::iterator it_now;
-		std::list<int>::iterator it_next = this->_lst.begin()+1;
-		std::list<int>::iterator it_end = this->_lst.end();
+    if (this->_lst.size() == 0 || this->_lst.size() == 1)
+    {
+        throw ListNonUsable();
+    }
+    else
+    {
+        unsigned int dist = 0;
+        unsigned int temp = 0;
+        std::list<int>::iterator it_now;
+        std::list<int>::iterator it_next = ++this->_lst.begin();
+        std::list<int>::iterator it_end = this->_lst.end();
 
-		for(it_now = this->_lst.begin(); it_next != it_end; it_now++, it_next++)
-		{
-			temp = *it_next - *it_now;
-			if (temp > dist)
-				dist = temp;
-		}
-		return (dist);
-	}
-	return (0);
+        for(it_now = this->_lst.begin(); it_next != it_end; it_now++)
+        {
+            if (*it_next < *it_now)
+            {
+                temp = *it_now - *it_next;
+            }
+            else
+            {
+                temp = *it_next - *it_now;
+            }
+            if (temp > dist || dist == 0)
+                dist = temp;
+            it_next++;
+        }
+        return (dist);
+    }
 }
 
 int Span::shortestSpan()
 {
-	if (this->_lst.size() == 0 || this->_lst.size() == 1)
-		throw std::exception();
-	else
-	{
-		int dist = 0;
-		int temp = 0;
-		std::list<int>::iterator it_now;
-		std::list<int>::iterator it_next;
-		std::list<int>::iterator it_end = this->_lst.end();
+    if (this->_lst.size() == 0 || this->_lst.size() == 1)
+    {
+        throw ListNonUsable();
+    }
+    else
+    {
+        unsigned int dist = 0;
+        unsigned int temp = 0;
+        std::list<int>::iterator it_now;
+        std::list<int>::iterator it_next = ++this->_lst.begin();
+        std::list<int>::iterator it_end = this->_lst.end();
 
-		for(it_now = this->_lst.begin(), it_next = it_now + 1; it_next != it_end; it_now++, it_next++)
-		{
-			temp = *it_next - *it_now;
-			if (temp < dist)
-				dist = temp;
-		}
-		return (dist);
-	}
-	return (0);
+        for(it_now = this->_lst.begin(); it_next != it_end; it_now++)
+        {
+            if (*it_next < *it_now)
+            {
+                temp = *it_now - *it_next;
+            }
+            else
+            {
+                temp = *it_next - *it_now;
+            }
+            if (temp < dist || dist == 0)
+                dist = temp;
+            it_next++;
+        }
+        return (dist);
+    }
 }
 
-void Span::addSeveralNumber(Span &sp, unsigned int begin, unsigned int end)
+void Span::addSeveralNumber(std::list<int> lst, unsigned int begin, unsigned int end)
 {
-	std::list<int>::iterator it = sp.getList().begin() + begin;
-	std::list<int>::iterator itEnd = sp.getList().end() - (sp.getList().size() - end);
-
-	this->_lst.assign(it, itEnd);
+	unsigned int newSize = (this->_lst.size() - begin) - (this->_lst.size() - end);
+	if (newSize > this->_max)
+		throw AddToMuchNb();
+	std::list<int>::iterator it = lst.begin();
+    for(unsigned int i = 0; i < begin; i++)
+    {
+        it++;
+    }
+	std::list<int>::iterator itEnd = lst.end();
+    for(unsigned int i = 0; i < lst.size() - end; i++)
+    {
+        end--;
+    }
+	this->_lst.insert(this->_lst.end(), it, itEnd);
 }
 
-std::list<int> Span::getList()
+unsigned int Span::getMax()
 {
-	return this->_lst;
+	return this->_max;
 }
