@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 17:11:00 by syluiset          #+#    #+#             */
-/*   Updated: 2024/02/25 20:57:56 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/25 21:42:19 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,15 +155,15 @@ std::map<std::string, float> get_info_float(std::string path)
 	return (map);
 }
 
-float BitcoinExchange::calc_exchange(mIterator &it)
+float BitcoinExchange::calc_exchange(mIterator &it) //! Utiliser std::pair !!
 {
 	std::map<std::string, float>::iterator itF;
 	std::map<std::string, float>::iterator iteF = this->base.end();
-	int* dateInput = get_date_ints(*it.);
+	int* dateInput = get_date_ints(*it.at());
 	int* dateBase;
 	for (itF = this->base.begin(); itF != iteF; itF++)
 	{
-		da
+		dateBase = 
 	}
 }
 
