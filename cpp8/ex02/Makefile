@@ -11,7 +11,7 @@ HEAD			:=	MutantStack.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	Easy
+NAME			:=	MutantStack
 
 #=========================FLAG===============================#
 CC				:=	c++ -std=c++98

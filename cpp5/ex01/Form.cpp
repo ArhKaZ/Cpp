@@ -91,19 +91,20 @@ std::ostream& operator<<(std::ostream &op, Form const &f)
 	return (op);
 }
 
-bool	Form::beSigned(Bureaucrat &b)
+void	Form::beSigned(Bureaucrat &b)
 {
-    try
-    {
-        if (b.getGrade() <= this->getGradeSign())
-            this->sign = true;
-	    else
-		    throw GradeTooLowException();
-    }
-    catch (Form::GradeTooLowException& e)
-    {
-        std::cout << e.what() << std::endl;
-        return (false);
-    }
-    return (true);
+	if (b.getGrade() <= this->getGradeSign())
+		this->sign = true;
+	else
+		throw GradeTooLowException();
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return "grade Form is too high";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return "grade Form is too low";
 }

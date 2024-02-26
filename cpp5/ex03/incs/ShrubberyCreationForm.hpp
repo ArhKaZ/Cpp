@@ -16,21 +16,18 @@
 #include <fstream>
 class ShrubberyCreationForm : public AForm
 {
-    class ShrubberyException : public std::exception
-    {
-    public:
-        virtual const char* what() const throw()
-        {
-            return "You are not allowed to get a shrubbery";
-        }
-    };
 public :
-    ShrubberyCreationForm(std::string target);
-    ~ShrubberyCreationForm();
-    void execute(Bureaucrat const & executor) const;
-    ShrubberyCreationForm();
-    ShrubberyCreationForm(const ShrubberyCreationForm &scf);
-    ShrubberyCreationForm& operator=(const ShrubberyCreationForm &scf);
+	ShrubberyCreationForm(std::string target);
+	~ShrubberyCreationForm();
+	void execute(Bureaucrat const & executor) const;
+	ShrubberyCreationForm();
+	ShrubberyCreationForm(const ShrubberyCreationForm &scf);
+	ShrubberyCreationForm& operator=(const ShrubberyCreationForm &scf);
+	class ShrubberyException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
 };
 
 #endif

@@ -14,15 +14,10 @@
 
 int main(int argc, char **argv)
 {
-	std::string line;
-	std::string date;
-	std::string value;
-
 	if (argc == 2)
 	{
 		BitcoinExchange be;
-
-		be.get_info_from_files(argv[1]);
+		be.displayBTCExchange(argv[1]);
 	}
 	else
 	{

@@ -25,13 +25,14 @@ public:
 	~BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &be);
 	BitcoinExchange &operator=(const BitcoinExchange &be);
-	void get_info_from_files(std::string path);
-	void displayBTCExchange();
-	typedef std::map<std::string, int>::iterator mIterator;
+	int get_info_from_files(std::string path);
+	void displayBTCExchange(std::string path);
+	typedef std::map<std::string, double>::iterator mIterator;
+	typedef std::pair<std::string, double> pairInput;
+	typedef std::pair<std::string, double> pairBase;
 private:
-	std::map<std::string, int> inputs;
-	std::map<std::string, float> base;
-	float calc_exchange(mIterator &it);
+	std::map<std::string, double> base;
+	double calc_exchange(std::string sDateInput);
 };
 
 #include <iostream>

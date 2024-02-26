@@ -181,7 +181,6 @@ void    display_double(std::string s, bool is_physic, int nb_dot)
 
 void AScalarConverter::convert(std::string s)
 {
-	//? Si un point alors faire atof, sinon fait strtol
 	bool is_physic = false;
 	int nb_dot = 0;
 

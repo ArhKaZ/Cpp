@@ -11,30 +11,26 @@
 /* ************************************************************************** */
 
 #include "incs/BitcoinExchange.hpp"
-std::map<std::string, float> get_info_float(std::string path);
 
 BitcoinExchange::BitcoinExchange()
 {
-	this->base = get_info_float("./data.csv");
+	this->get_info_from_files("./data.csv");
 }
 
 BitcoinExchange::~BitcoinExchange()
 {
 	this->base.erase(base.begin(), base.end());
-	this->inputs.erase(inputs.begin(), inputs.end());
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &be)
 {
 	this->base = be.base;
-	this->inputs = be.inputs;
 	return *this;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &be)
 {
 	this->base = be.base;
-	this->inputs = be.inputs;
 }
 
 bool verif_date_string(std::string s)
@@ -79,7 +75,7 @@ bool leap_year(int year)
 
 int* get_date_ints(std::string s)
 {
-	int date[3] = {0, 0, 0};
+	int* date = new int[3];
 	std::string temp;
 
 	temp = s.substr(0, 4);
@@ -93,21 +89,30 @@ int* get_date_ints(std::string s)
 
 bool verif_date_number(std::string s)
 {
-	int* date = get_date_ints(s); //! Delete ?
+	int* date = get_date_ints(s);
 
 	if (date[0] < 0 || date[1] <= 0 || date[1] > 12 || date[2] < 0)
+	{
+		delete[] date;
 		return (false);
+	}
 	if (date[1] == 2)
 	{
 		if (leap_year(date[0]))
 		{
 			if (date[2] > 29)
+			{
+				delete[] date;
 				return (false);
+			}
 		}
 		else
 		{
 			if (date[2] > 28)
+			{
+				delete[] date;
 				return (false);
+			}
 		}
 	}
 	else
@@ -115,75 +120,101 @@ bool verif_date_number(std::string s)
 		if (date[1] % 2 == 0)
 		{
 			if (date[2] > 30)
+			{
+				delete[] date;
 				return (false);
+			}
 		}
 		else
 		{
 			if (date[2] > 31)
+			{
+				delete[] date;
 				return (false);
+			}
 		}
 	}
-	return (false);
+	delete[] date;
+	return (true);
 }
 
-std::map<std::string, float> get_info_float(std::string path)
+double BitcoinExchange::calc_exchange(std::string sDateInput)
 {
-	std::string line;
-	std::ifstream myfile;
-	char tmp;
-	std::map<std::string, float> map;
-	std::string date;
-	std::string value;
+	std::map<std::string, double>::iterator itlow;
 
-	myfile.open(path.c_str(), std::ifstream::in);
-	while (myfile.get(tmp))
+	itlow = this->base.lower_bound(sDateInput);
+	return (itlow->second);
+}
+
+void BitcoinExchange::displayBTCExchange(std::string path)
+{
+	double rate = 0;
+	std::ifstream inputFile;
+	char tmp;
+	std::string line;
+	std::string nbBtcTmp;
+	double nbBtc = 0;
+	std::string date;
+
+	try
 	{
+		inputFile.open(path.c_str(), std::ifstream::in);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	while (inputFile.good())
+	{
+		tmp = inputFile.get();
 		if (tmp == '\n')
+			break;
+	}
+	while (inputFile.good())
+	{
+		tmp = inputFile.get();
+		if (tmp == '\n' || inputFile.eof())
 		{
-			date = line.substr(0, line.find(","));
-			value = line.substr(line.find(",") + 1, (line.size() - line.find(",")) - 1);
-			map.insert(std::pair<std::string, float>(date, static_cast<float>(atof(value.c_str()))));
-			date.erase(date.begin(), date.end());
-			value.erase(date.begin(), date.end());
+			if (line.find("|") == std::string::npos || !verif_date_string(line) || !verif_date_number(line))
+			{
+				std::cerr << "ERROR: bad input => " << line << std::endl;
+				line.erase(line.begin(), line.end());
+				continue;
+			}
+			date = line.substr(0, line.find('|') - 1);
+			nbBtcTmp = line.substr(line.find('|') + 2, line.size() - line.find('|'));
+			nbBtc = atof(nbBtcTmp.c_str());
+			nbBtcTmp.erase(nbBtcTmp.begin(), nbBtcTmp.end());
+			if (nbBtc < 0)
+			{
+				std::cerr << "ERROR: not a positive number." << std::endl;
+				line.erase(line.begin(), line.end());
+				date.erase(date.begin(), date.end());
+				continue ;
+			}
+			if (nbBtc > 1000)
+			{
+				std::cerr << "ERROR: too large a number." << std::endl;
+				line.erase(line.begin(), line.end());
+				date.erase(date.begin(), date.end());
+				continue ;
+			}
+			rate = calc_exchange(date);
+			std::cout << date << " => " << nbBtc << " = " << rate * nbBtc << std::endl;
 			line.erase(line.begin(), line.end());
+			date.erase(date.begin(), date.end());
 		}
 		else
-		{
 			line.push_back(tmp);
-		}
-	}
-	return (map);
-}
-
-float BitcoinExchange::calc_exchange(mIterator &it) //! Utiliser std::pair !!
-{
-	std::map<std::string, float>::iterator itF;
-	std::map<std::string, float>::iterator iteF = this->base.end();
-	int* dateInput = get_date_ints(*it.at());
-	int* dateBase;
-	for (itF = this->base.begin(); itF != iteF; itF++)
-	{
-		dateBase = 
 	}
 }
 
-void BitcoinExchange::displayBTCExchange()
-{
-	mIterator it;
-	mIterator ite = this->inputs.end();
-	
-	for (it = this->inputs.begin(); it != ite; it++)
-	{
-		
-	}
-}
-
-void BitcoinExchange::get_info_from_files(std::string path)
+int BitcoinExchange::get_info_from_files(std::string path)
 {
 	std::string line;
 	std::ifstream myfile;
 	char tmp;
-	std::map<std::string, int> map;
+	std::map<std::string, double> map;
 	std::string date;
 	std::string value;
 
@@ -194,22 +225,22 @@ void BitcoinExchange::get_info_from_files(std::string path)
 	catch (const std::exception &e)
 	{
 		std::cerr << "ERROR : " << e.what() << '\n';
-		return;
+		return (-1);
 	}
-	while (myfile.get(tmp))
+	while (myfile.good())
 	{
+		tmp = myfile.get();
 		if (tmp == '\n')
+			break;
+	}
+	while (myfile.good())
+	{
+		tmp = myfile.get();
+		if (tmp == '\n' || myfile.eof())
 		{
-			if (!verif_date_string(line) || !verif_date_number(line))
-			{
-				std::cerr << "ERROR: bad input => " << line;
-				line.erase(line.begin(), line.end());
-				map.erase(map.begin(), map.end());
-				return;
-			}
-			date = line.substr(0, line.find("|") - 1);
-			value = line.substr(line.find("|") + 2, (line.size() - line.find(",")) - 1);
-			map.insert(std::pair<std::string, int>(date, atoi(value.c_str())));
+			date = line.substr(0, line.find(','));
+			value = line.substr(line.find(',') + 1, (line.size() - line.find(',')) - 1);
+			map.insert(map.begin(),std::pair<std::string, double>(date, atof(value.c_str())));
 			date.erase(date.begin(), date.end());
 			value.erase(date.begin(), date.end());
 			line.erase(line.begin(), line.end());
@@ -219,6 +250,7 @@ void BitcoinExchange::get_info_from_files(std::string path)
 			line.push_back(tmp);
 		}
 	}
-	this->inputs = map;
+	this->base = map;
 	myfile.close();
+	return (0);
 }

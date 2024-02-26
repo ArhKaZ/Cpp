@@ -19,22 +19,6 @@
 # include <stdlib.h>
 class Span
 {
-	class AddToMuchNb : public std::exception
-	{
-	public:
-		virtual const char* what() const throw()
-		{
-			return "Add more number compare to the max of the list";
-		}
-	};
-class ListNonUsable : public std::exception
-{
-public:
-	virtual const char* what() const throw()
-	{
-		return "List as none or only one number !";
-	}
-};
 public:
 	std::list<int> _lst;
 	Span();
@@ -47,6 +31,16 @@ public:
 	int longestSpan();
 	void addSeveralNumber(std::list<int> lst, unsigned int begin, unsigned int end);
 	unsigned int getMax();
+	class AddToMuchNb : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
+	class ListNonUsable : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
 private:
 	unsigned int _max;
 };

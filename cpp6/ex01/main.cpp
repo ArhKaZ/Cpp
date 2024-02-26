@@ -25,6 +25,4 @@ int main()
 	d2 = ASerializer::deserialize(ptr);
 	std::cout << "Adresse after deserialize : " << d2 << std::endl;
 	std::cout << std::dec <<  "Value after deserialize : " << d2->get_value() << std::endl;
-
-
 }

@@ -19,40 +19,31 @@
 class AForm;
 class Bureaucrat
 {
+private:
+	std::string _name;
+	unsigned int _grade;
+public:
+	Bureaucrat();
+	Bureaucrat(const Bureaucrat &bureaucrat);
+	Bureaucrat(std::string name, unsigned int grade);
+	~Bureaucrat();
+	void	signForm(AForm &f);
+	std::string getName() const;
+	unsigned int getGrade() const;
+	void	incrGrade();
+	void	downGrade();
+	Bureaucrat& operator = (const Bureaucrat &bureaucrat);
+	void    executeForm(AForm const & form);
 	class GradeTooHighException : public std::exception
 	{
-		public:
-        virtual const char* what() const throw()
-		{
-			return "Grade is too high";
-		}
+	public:
+		virtual const char* what() const throw();
 	};
-
 	class GradeTooLowException : public std::exception
 	{
-		public:
-        virtual const char* what() const throw()
-		{
-			return "Grade is too low";
-		}
-	};
-
-
-	private:
-		std::string _name;
-		unsigned int _grade;
 	public:
-        Bureaucrat();
-        Bureaucrat& operator = (const Bureaucrat &bureaucrat);
-        Bureaucrat(const Bureaucrat &bureaucrat);
-		Bureaucrat(std::string name, unsigned int grade);
-		~Bureaucrat();
-		void	signForm(AForm &f);
-		std::string getName() const;
-		unsigned int getGrade() const;
-		void	incrGrade();
-		void	downGrade();
-        void    executeForm(AForm const & form);
+		virtual const char* what() const throw();
+	};
 };
 
 std::ostream &operator<<(std::ostream &op, Bureaucrat const &b);

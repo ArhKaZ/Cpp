@@ -14,28 +14,29 @@
 
 AForm::AForm()
 {
-    return;
+	return;
 }
+
 AForm::~AForm()
 {
-    return;
+	return;
 }
 
 AForm::AForm(const AForm &form)
 {
-    this->sign = form.sign;
-    this->gradeSign = form.gradeSign;
-    this->gradeExecute = form.gradeExecute;
-    this->name = form.name;
+	this->sign = form.sign;
+	this->gradeSign = form.gradeSign;
+	this->gradeExecute = form.gradeExecute;
+	this->name = form.name;
 }
 
 AForm &AForm::operator=(const AForm &form)
 {
-    this->sign = form.sign;
-    this->gradeSign = form.gradeSign;
-    this->gradeExecute = form.gradeExecute;
-    this->name = form.name;
-    return *this;
+	this->sign = form.sign;
+	this->gradeSign = form.gradeSign;
+	this->gradeExecute = form.gradeExecute;
+	this->name = form.name;
+	return *this;
 }
 
 std::string AForm::getName() const
@@ -64,39 +65,40 @@ std::ostream& operator<<(std::ostream &op, AForm const &f)
 	return (op);
 }
 
-bool	AForm::beSigned(Bureaucrat &b)
+void	AForm::beSigned(Bureaucrat &b)
 {
-    try
-    {
-        if (b.getGrade() <= this->getGradeSign())
-            this->sign = true;
-	    else
-		    throw GradeTooLowException();
-    }
-    catch (AForm::GradeTooLowException& e)
-    {
-        std::cout << e.what() << std::endl;
-        return (false);
-    }
-    return (true);
+	if (b.getGrade() <= this->getGradeSign())
+		this->sign = true;
+	else
+		throw GradeTooLowException();
 }
 
 void    AForm::setName(std::string name)
 {
-    this->name = name;
+	this->name = name;
 }
 
 void    AForm::setGradeExecute(unsigned int lvl)
 {
-    this->gradeExecute = lvl;
+	this->gradeExecute = lvl;
 }
 
 void    AForm::setGradeSign(unsigned int lvl)
 {
-    this->gradeSign = lvl;
+	this->gradeSign = lvl;
 }
 
 void    AForm::setSign(bool value)
 {
-    this->sign = value;
+	this->sign = value;
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
+{
+	return "grade Form is too high";
+}
+
+const char* AForm::GradeTooLowException::what() const throw()
+{
+	return "grade Form is too low";
 }

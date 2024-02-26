@@ -24,20 +24,14 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
 
 void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-    try
-    {
-        if (executor.getGrade() <= this->getGradeExecute()) {
-            std::cout << this->getName() << " is pardonned by Zaphod Beeblebrox" << std::endl;
-        }
-        else
-        {
-            throw PardonException();
-        }
-    }
-    catch (PardonException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+	if (executor.getGrade() <= this->getGradeExecute())
+	{
+		std::cout << this->getName() << " is pardonned by Zaphod Beeblebrox" << std::endl;
+	}
+	else
+	{
+		throw PardonException();
+	}
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &pdf)
@@ -64,4 +58,9 @@ PresidentialPardonForm::PresidentialPardonForm()
 
 PresidentialPardonForm::~PresidentialPardonForm() {
     return;
+}
+
+const char* PresidentialPardonForm::PardonException::what() const throw()
+{
+	return "You are not allowed to Pardon";
 }

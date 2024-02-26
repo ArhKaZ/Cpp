@@ -16,14 +16,6 @@
 #include <stdlib.h>
 class RobotomyRequestForm : public AForm
 {
-    class RobotomyException : public std::exception
-    {
-    public:
-        virtual const char* what() const throw()
-        {
-            return "You are not allowed to Robotomy this form";
-        }
-    };
 public:
     RobotomyRequestForm();
     RobotomyRequestForm(const RobotomyRequestForm &rrf);
@@ -31,6 +23,11 @@ public:
     RobotomyRequestForm(std::string target);
     ~RobotomyRequestForm();
     void    execute(Bureaucrat const & executor) const;
+	class RobotomyException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
 };
 
 #endif

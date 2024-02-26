@@ -18,24 +18,6 @@
 class Bureaucrat;
 class Form
 {
-	class GradeTooHighException : public std::exception
-	{
-		public:
-		virtual const char* what() const throw()
-		{
-			return "grade Form is too high";
-		}
-	};
-
-	class GradeTooLowException : public std::exception
-	{
-		public:
-		virtual const char* what() const throw()
-		{
-			return "grade Form is too low";
-		}
-	};
-
 	private :
 		std::string name;
 		bool sign;
@@ -50,8 +32,18 @@ class Form
 		bool getSign() const;
 		unsigned int getGradeSign() const;
 		unsigned int getGradeExecute() const;
-		bool beSigned(Bureaucrat &b);
+		void beSigned(Bureaucrat &b);
         Form &operator = (const Form &form);
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
 std::ostream& operator<<(std::ostream &op, Form const &f);

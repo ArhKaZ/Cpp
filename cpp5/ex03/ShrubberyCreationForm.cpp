@@ -14,76 +14,74 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 {
-    this->setName(target);
-    this->setGradeSign(145);
-    this->setGradeExecute(137);
-    this->setSign(false);
+	this->setName(target);
+	this->setGradeSign(145);
+	this->setGradeExecute(137);
+	this->setSign(false);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-    return;
+	return;
 }
 
 void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    int spaces = 20 - 1;
-    int stars = 1;
-    try
-    {
-        if (executor.getGrade() <= this->getGradeExecute())
-        {
-            std::ofstream ofs;
-            std::string filename = this->getName() + "_shrubbery";
-            ofs.open (filename.c_str(), std::ofstream::out);
-            for (int i = 0; i < 20; i++)
-            {
-                for (int j = 0; j < spaces; j++)
-                {
-                    ofs << " ";
-                }
-                for (int j = 0; j < stars; j++)
-                {
-                    ofs << "*";
-                }
-                ofs << std::endl;
-                spaces--;
-                stars += 2;
-            }
-            for (int i = 0; i < 20 - 1; i++)
-            {
-                ofs << " ";
-            }
-            ofs << "*" << std::endl;
-            ofs.close();
-        }
-        else
-            throw ShrubberyException();
-    }
-    catch (ShrubberyException &e)
-    {
-         std::cout << e.what() << std::endl;
-    }
+	int spaces = 20 - 1;
+	int stars = 1;
+	if (executor.getGrade() <= this->getGradeExecute())
+	{
+		std::ofstream ofs;
+		std::string filename = this->getName() + "_shrubbery";
+		ofs.open (filename.c_str(), std::ofstream::out);
+		for (int i = 0; i < 20; i++)
+		{
+			for (int j = 0; j < spaces; j++)
+			{
+				ofs << " ";
+			}
+			for (int j = 0; j < stars; j++)
+			{
+				ofs << "*";
+			}
+			ofs << std::endl;
+			spaces--;
+			stars += 2;
+		}
+		for (int i = 0; i < 20 - 1; i++)
+		{
+			ofs << " ";
+		}
+		ofs << "*" << std::endl;
+		ofs.close();
+	}
+	else
+		throw ShrubberyException();
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 {
-    return;
+	return;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf)
 {
-    this->setName(scf.getName());
-    this->setSign(scf.getSign());
-    this->setGradeExecute(scf.getGradeExecute());
-    this->setGradeSign(scf.getGradeSign());
+	this->setName(scf.getName());
+	this->setSign(scf.getSign());
+	this->setGradeExecute(scf.getGradeExecute());
+	this->setGradeSign(scf.getGradeSign());
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &scf)
 {
-    this->setName(scf.getName());
-    this->setSign(scf.getSign());
-    this->setGradeExecute(scf.getGradeExecute());
-    this->setGradeSign(scf.getGradeSign());
-    return *this;
+	this->setName(scf.getName());
+	this->setSign(scf.getSign());
+	this->setGradeExecute(scf.getGradeExecute());
+	this->setGradeSign(scf.getGradeSign());
+	return *this;
+}
+
+const char* ShrubberyCreationForm::ShrubberyException::what() const throw()
+{
+	return "You are not allowed to get a shrubbery";
 }

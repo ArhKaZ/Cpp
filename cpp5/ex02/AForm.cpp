@@ -65,21 +65,12 @@ std::ostream& operator<<(std::ostream &op, AForm const &f)
 	return (op);
 }
 
-bool	AForm::beSigned(Bureaucrat &b)
+void	AForm::beSigned(Bureaucrat &b)
 {
-    try
-    {
-        if (b.getGrade() <= this->getGradeSign())
-            this->sign = true;
-	    else
-		    throw GradeTooLowException();
-    }
-    catch (AForm::GradeTooLowException& e)
-    {
-        std::cout << e.what() << std::endl;
-        return (false);
-    }
-    return (true);
+	if (b.getGrade() <= this->getGradeSign())
+		this->sign = true;
+	else
+		throw GradeTooLowException();
 }
 
 void    AForm::setName(std::string name)
@@ -100,4 +91,14 @@ void    AForm::setGradeSign(unsigned int lvl)
 void    AForm::setSign(bool value)
 {
     this->sign = value;
+}
+
+const char* AForm::GradeTooHighException::what() const throw()
+{
+	return "grade Form is too high";
+}
+
+const char* AForm::GradeTooLowException::what() const throw()
+{
+	return "grade Form is too low";
 }

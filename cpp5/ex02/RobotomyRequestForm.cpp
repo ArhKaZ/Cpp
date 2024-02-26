@@ -29,31 +29,24 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
     int rand_nb;
 
-    try
-    {
-        if (executor.getGrade() <= this->getGradeExecute())
-        {
-            srand(time(NULL));
-            std::cout << "*driiiiiiiiiiillll*" << std::endl;
-            rand_nb = rand() % 2;
-            if (rand_nb == 0)
-            {
-                std::cout << this->getName() << " has been robotomized successfully" << std::endl;
-            }
-            else
-            {
-                std::cout << this->getName() << " has failed to be robotomized" << std::endl;
-            }
-        }
-        else
-        {
-            throw RobotomyException();
-        }
-    }
-    catch (RobotomyException &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+	if (executor.getGrade() <= this->getGradeExecute())
+	{
+		srand(time(NULL));
+		std::cout << "*driiiiiiiiiiillll*" << std::endl;
+		rand_nb = rand() % 2;
+		if (rand_nb == 0)
+		{
+			std::cout << this->getName() << " has been robotomized successfully" << std::endl;
+		}
+		else
+		{
+			std::cout << this->getName() << " has failed to be robotomized" << std::endl;
+		}
+	}
+	else
+	{
+		throw RobotomyException();
+	}
 }
 
 RobotomyRequestForm::RobotomyRequestForm()
@@ -76,4 +69,9 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &r
     this->setGradeExecute(rrf.getGradeExecute());
     this->setGradeSign(rrf.getGradeSign());
     return *this;
+}
+
+const char* RobotomyRequestForm::RobotomyException::what() const throw()
+{
+	return "You are not allowed to Robotomy this form";
 }

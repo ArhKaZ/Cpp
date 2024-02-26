@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "incs/Span.hpp"
-
+#include <limits>
 Span::Span(){ return ;}
 
 Span::~Span(){ return ;}
@@ -79,7 +79,7 @@ int Span::longestSpan()
             {
                 temp = *it_next - *it_now;
             }
-            if (temp > dist || dist == 0)
+            if (temp > dist)
                 dist = temp;
             it_next++;
         }
@@ -95,7 +95,7 @@ int Span::shortestSpan()
     }
     else
     {
-        unsigned int dist = 0;
+        unsigned int dist = std::numeric_limits<unsigned int>::max();
         unsigned int temp = 0;
         std::list<int>::iterator it_now;
         std::list<int>::iterator it_next = ++this->_lst.begin();
@@ -111,7 +111,7 @@ int Span::shortestSpan()
             {
                 temp = *it_next - *it_now;
             }
-            if (temp < dist || dist == 0)
+            if (temp < dist)
                 dist = temp;
             it_next++;
         }
@@ -140,4 +140,14 @@ void Span::addSeveralNumber(std::list<int> lst, unsigned int begin, unsigned int
 unsigned int Span::getMax()
 {
 	return this->_max;
+}
+
+const char* Span::AddToMuchNb::what() const throw()
+{
+	return "Add more number compare to the max of the list";
+}
+
+const char* Span::ListNonUsable::what() const throw()
+{
+	return "List as none or only one number !";
 }

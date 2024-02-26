@@ -14,22 +14,49 @@
 
 int main()
 {
-	Bureaucrat *b = new Bureaucrat("Sylvain", 10);
-	Bureaucrat *c = new Bureaucrat("Antoine", 2);
-	Bureaucrat *d = new Bureaucrat("Xavier", 149);
-    Bureaucrat *w = new Bureaucrat("Bidon", 3240);
-    Bureaucrat *q = new Bureaucrat("Bidon2", 0);
-
-	d->downGrade();
-	d->downGrade();
-	c->incrGrade();
-	c->incrGrade();
-	std::cout << *c;
-	std::cout << *b;
-	std::cout << *d;
-	delete b;
-	delete c;
-	delete d;
-    delete w;
-    delete q;
+	Bureaucrat *BuMidLvl = new Bureaucrat("Sylvain", 10);
+	Bureaucrat *BuHighLvl = new Bureaucrat("Antoine", 2);
+	Bureaucrat *BuLowLvl = new Bureaucrat("Xavier", 149);
+	Bureaucrat *BuTooLow;
+	Bureaucrat *BuTooHigh;
+	try
+	{
+		BuTooLow = new Bureaucrat("Bidon", 3240);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		BuTooHigh = new Bureaucrat("Bidon2", 0);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	BuLowLvl->downGrade();
+	try
+	{
+		BuLowLvl->downGrade();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	BuHighLvl->incrGrade();
+	try
+	{
+		BuHighLvl->incrGrade();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << *BuMidLvl;
+	std::cout << *BuHighLvl;
+	std::cout << *BuLowLvl;
+	delete BuMidLvl;
+	delete BuHighLvl;
+	delete BuLowLvl;
 }

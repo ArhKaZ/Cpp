@@ -16,14 +16,6 @@
 
 class PresidentialPardonForm : public AForm
 {
-    class PardonException : public std::exception
-    {
-    public:
-        virtual const char* what() const throw()
-        {
-            return "You are not allowed to Pardon";
-        }
-    };
 public:
     PresidentialPardonForm();
     PresidentialPardonForm(const PresidentialPardonForm &pdf);
@@ -31,6 +23,11 @@ public:
     ~PresidentialPardonForm();
     void    execute(Bureaucrat const & executor) const;
     PresidentialPardonForm& operator=(const PresidentialPardonForm &pdf);
+	class PardonException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
 };
 
 #endif
