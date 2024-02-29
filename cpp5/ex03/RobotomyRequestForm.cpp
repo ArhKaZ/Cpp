@@ -6,11 +6,9 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:57:01 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 16:58:03 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:46:34 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "incs/RobotomyRequestForm.hpp"
 
 #include "incs/RobotomyRequestForm.hpp"
 
@@ -20,14 +18,14 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72,
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	return;
+    return;
 }
 
 void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	int rand_nb;
+    int rand_nb;
 
-	if (executor.getGrade() <= this->getGradeExecute())
+	if (this->getSign() && executor.getGrade() <= this->getGradeExecute())
 	{
 		srand(time(NULL));
 		std::cout << "*driiiiiiiiiiillll*" << std::endl;
@@ -49,7 +47,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 
 RobotomyRequestForm::RobotomyRequestForm()
 {
-	return;
+    return;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf) : AForm(rrf.getName(), rrf.getGradeSign(), rrf.getGradeExecute())
@@ -58,8 +56,8 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf) : AForm
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &rrf)
 {
-	this->setSign(rrf.getSign());
-	return *this;
+    this->setSign(rrf.getSign());
+    return *this;
 }
 
 const char* RobotomyRequestForm::RobotomyException::what() const throw()

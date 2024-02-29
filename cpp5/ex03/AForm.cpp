@@ -14,19 +14,19 @@
 
 AForm::AForm() : gradeSign(0), gradeExecute(0)
 {
-	return;
+    return;
 }
 
 AForm::~AForm()
 {
-	return;
+    return;
 }
 
 AForm::AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute) : name(name) ,gradeSign(gradeSign), gradeExecute(gradeExecute)
 {
-	if (gradeSign > 150)
+	if (gradeSign > 150 || gradeExecute > 150)
 		throw GradeTooLowException();
-	if (gradeSign < 1)
+	if (gradeSign < 1 || gradeExecute < 1)
 		throw GradeTooHighException();
 	else
 	{
@@ -36,13 +36,13 @@ AForm::AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute
 
 AForm::AForm(const AForm &form) : name(form.name), gradeSign(form.gradeSign), gradeExecute(form.gradeExecute)
 {
-	this->sign = form.sign;
+    this->sign = form.sign;
 }
 
 AForm &AForm::operator=(const AForm &form)
 {
-	this->sign = form.sign;
-	return *this;
+    this->sign = form.sign;
+    return *this;
 }
 
 std::string AForm::getName() const
@@ -81,7 +81,7 @@ void	AForm::beSigned(Bureaucrat &b)
 
 void    AForm::setSign(bool value)
 {
-	this->sign = value;
+    this->sign = value;
 }
 
 const char* AForm::GradeTooHighException::what() const throw()

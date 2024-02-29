@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:53:04 by syluiset          #+#    #+#             */
-/*   Updated: 2024/02/08 15:29:43 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:45:16 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
     int spaces = 20 - 1;
     int stars = 1;
-	if (executor.getGrade() <= this->getGradeExecute())
+	if (this->getSign() && executor.getGrade() <= this->getGradeExecute())
 	{
 		std::ofstream ofs;
 		std::string filename = this->getName() + "_shrubbery";

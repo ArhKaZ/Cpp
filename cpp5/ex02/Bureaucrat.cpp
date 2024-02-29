@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 11:23:57 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 14:27:34 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:43:09 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	Bureaucrat::signForm(AForm &f)
 
 void    Bureaucrat::executeForm(AForm const &form)
 {
-    if (this->getGrade() <= form.getGradeExecute())
+    if (form.getSign() == true && this->getGrade() <= form.getGradeExecute())
     {
         form.execute(*this);
         std::cout << this->getName() << " executed " << form.getName() << std::endl;

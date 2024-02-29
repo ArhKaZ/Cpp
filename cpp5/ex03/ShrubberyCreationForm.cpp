@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:53:04 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/10 10:58:46 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:46:52 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target,
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	return;
+    return;
 }
 
 void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	int spaces = 20 - 1;
-	int stars = 1;
-	if (executor.getGrade() <= this->getGradeExecute())
+    int spaces = 20 - 1;
+    int stars = 1;
+	if (this->getSign() && executor.getGrade() <= this->getGradeExecute())
 	{
 		std::ofstream ofs;
 		std::string filename = this->getName() + "_shrubbery";
@@ -57,7 +57,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 
 ShrubberyCreationForm::ShrubberyCreationForm()
 {
-	return;
+    return;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf) : AForm(scf.getName(), scf.getGradeSign(), scf.getGradeExecute())
@@ -66,8 +66,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf) :
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &scf)
 {
-	this->setSign(scf.getSign());
-	return *this;
+    this->setSign(scf.getSign());
+    return *this;
 }
 
 const char* ShrubberyCreationForm::ShrubberyException::what() const throw()

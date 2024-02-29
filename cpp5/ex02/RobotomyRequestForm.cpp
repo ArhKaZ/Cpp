@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:57:01 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 16:58:03 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:45:05 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
     int rand_nb;
 
-	if (executor.getGrade() <= this->getGradeExecute())
+	if (this->getSign() && executor.getGrade() <= this->getGradeExecute())
 	{
 		srand(time(NULL));
 		std::cout << "*driiiiiiiiiiillll*" << std::endl;

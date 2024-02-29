@@ -24,9 +24,9 @@ AForm::~AForm()
 
 AForm::AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute) : name(name) ,gradeSign(gradeSign), gradeExecute(gradeExecute)
 {
-	if (gradeSign > 150)
+	if (gradeSign > 150 || gradeExecute > 150)
 		throw GradeTooLowException();
-	if (gradeSign < 1)
+	if (gradeSign < 1 || gradeExecute < 1)
 		throw GradeTooHighException();
 	else
 	{

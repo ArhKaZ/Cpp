@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:02:22 by syluiset          #+#    #+#             */
-/*   Updated: 2024/01/09 16:47:49 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:46:20 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(targe
 
 void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-	if (executor.getGrade() <= this->getGradeExecute())
+	if (this->getSign() == true && executor.getGrade() <= this->getGradeExecute())
 	{
 		std::cout << this->getName() << " is pardonned by Zaphod Beeblebrox" << std::endl;
 	}
@@ -36,17 +36,17 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &pdf
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &pdf)
 {
-	this->setSign(pdf.getSign());
-	return *this;
+    this->setSign(pdf.getSign());
+    return *this;
 }
 
 PresidentialPardonForm::PresidentialPardonForm()
 {
-	return;
+    return;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
-	return;
+    return;
 }
 
 const char* PresidentialPardonForm::PardonException::what() const throw()
