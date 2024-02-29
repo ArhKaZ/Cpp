@@ -12,12 +12,8 @@
 
 #include "incs/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137)
 {
-	this->setName(target);
-	this->setGradeSign(145);
-	this->setGradeExecute(137);
-	this->setSign(false);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
@@ -64,20 +60,13 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf) : AForm(scf.getName(), scf.getGradeSign(), scf.getGradeExecute())
 {
-	this->setName(scf.getName());
-	this->setSign(scf.getSign());
-	this->setGradeExecute(scf.getGradeExecute());
-	this->setGradeSign(scf.getGradeSign());
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &scf)
 {
-	this->setName(scf.getName());
 	this->setSign(scf.getSign());
-	this->setGradeExecute(scf.getGradeExecute());
-	this->setGradeSign(scf.getGradeSign());
 	return *this;
 }
 

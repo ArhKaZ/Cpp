@@ -12,7 +12,7 @@
 
 #include "incs/AForm.hpp"
 
-AForm::AForm()
+AForm::AForm() : gradeSign(0), gradeExecute(0)
 {
 	return;
 }
@@ -22,20 +22,26 @@ AForm::~AForm()
 	return;
 }
 
-AForm::AForm(const AForm &form)
+AForm::AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute) : name(name) ,gradeSign(gradeSign), gradeExecute(gradeExecute)
+{
+	if (gradeSign > 150)
+		throw GradeTooLowException();
+	if (gradeSign < 1)
+		throw GradeTooHighException();
+	else
+	{
+		this->sign = false;
+	}
+}
+
+AForm::AForm(const AForm &form) : name(form.name), gradeSign(form.gradeSign), gradeExecute(form.gradeExecute)
 {
 	this->sign = form.sign;
-	this->gradeSign = form.gradeSign;
-	this->gradeExecute = form.gradeExecute;
-	this->name = form.name;
 }
 
 AForm &AForm::operator=(const AForm &form)
 {
 	this->sign = form.sign;
-	this->gradeSign = form.gradeSign;
-	this->gradeExecute = form.gradeExecute;
-	this->name = form.name;
 	return *this;
 }
 
@@ -71,21 +77,6 @@ void	AForm::beSigned(Bureaucrat &b)
 		this->sign = true;
 	else
 		throw GradeTooLowException();
-}
-
-void    AForm::setName(std::string name)
-{
-	this->name = name;
-}
-
-void    AForm::setGradeExecute(unsigned int lvl)
-{
-	this->gradeExecute = lvl;
-}
-
-void    AForm::setGradeSign(unsigned int lvl)
-{
-	this->gradeSign = lvl;
 }
 
 void    AForm::setSign(bool value)

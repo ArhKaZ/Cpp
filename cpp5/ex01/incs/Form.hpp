@@ -19,19 +19,19 @@ class Bureaucrat;
 class Form
 {
 	private :
-		std::string name;
+		const std::string name;
 		bool sign;
-		unsigned int gradeSign;
-		unsigned int gradeExecute;
+		const unsigned int gradeSign;
+		const unsigned int gradeExecute;
 	public :
         Form();
         Form(const Form &form);
 		Form(std::string name, unsigned int gradeSign, unsigned int gradeExecute);
 		~Form();
-		std::string getName() const;
+		const std::string getName() const;
 		bool getSign() const;
-		unsigned int getGradeSign() const;
-		unsigned int getGradeExecute() const;
+		const unsigned int getGradeSign() const;
+		const unsigned int getGradeExecute() const;
 		void beSigned(Bureaucrat &b);
         Form &operator = (const Form &form);
 		class GradeTooHighException : public std::exception

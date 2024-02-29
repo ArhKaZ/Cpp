@@ -12,12 +12,10 @@
 
 #include "incs/RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target)
+#include "incs/RobotomyRequestForm.hpp"
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72, 45)
 {
-	this->setName(target);
-	this->setGradeSign(72);
-	this->setGradeExecute(45);
-	this->setSign(false);
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -54,20 +52,13 @@ RobotomyRequestForm::RobotomyRequestForm()
 	return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf) : AForm(rrf.getName(), rrf.getGradeSign(), rrf.getGradeExecute())
 {
-	this->setName(rrf.getName());
-	this->setSign(rrf.getSign());
-	this->setGradeExecute(rrf.getGradeExecute());
-	this->setGradeSign(rrf.getGradeSign());
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &rrf)
 {
-	this->setName(rrf.getName());
 	this->setSign(rrf.getSign());
-	this->setGradeExecute(rrf.getGradeExecute());
-	this->setGradeSign(rrf.getGradeSign());
 	return *this;
 }
 

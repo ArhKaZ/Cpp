@@ -39,20 +39,18 @@ Bureaucrat::Bureaucrat()
 	return ;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) : _name(bureaucrat._name)
 {
 	this->_grade = bureaucrat._grade;
-	this->_name = bureaucrat._name;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 {
 	this->_grade = bureaucrat._grade;
-	this->_name = bureaucrat._name;
 	return *this;
 }
 
-std::string Bureaucrat::getName() const
+const std::string Bureaucrat::getName() const
 {
 	return (this->_name);
 }

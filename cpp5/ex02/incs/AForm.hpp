@@ -19,13 +19,14 @@ class Bureaucrat;
 class AForm
 {
 	private :
-		std::string name;
+		const std::string name;
 		bool sign;
-		unsigned int gradeSign;
-		unsigned int gradeExecute;
+		const unsigned int gradeSign;
+		const unsigned int gradeExecute;
 	public :
         AForm();
         AForm(const AForm &form);
+		AForm(std::string name, unsigned int gradeSign, unsigned int gradeExecute);
 		virtual ~AForm();
         std::string getName() const;
 		bool getSign() const;

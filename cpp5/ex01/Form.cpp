@@ -12,50 +12,30 @@
 
 #include "incs/Form.hpp"
 
-Form::Form(std::string name, unsigned int gradeSign, unsigned int gradeExecute)
+Form::Form(std::string name, unsigned int gradeSign, unsigned int gradeExecute) : name(name) ,gradeSign(gradeSign), gradeExecute(gradeExecute)
 {
-	try
+	if (gradeSign > 150)
+		throw GradeTooLowException();
+	if (gradeSign < 1)
+		throw GradeTooHighException();
+	else
 	{
-		if (gradeSign > 150)
-			throw GradeTooLowException();
-		if (gradeSign < 1)
-			throw GradeTooHighException();
-		else
-		{
-			this->name = name;
-			this->gradeSign = gradeSign;
-			this->gradeExecute = gradeExecute;
-			this->sign = false;
-		}
-	}
-	catch (Form::GradeTooLowException& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	catch (Form::GradeTooHighException& e)
-	{
-		std::cout << e.what() << std::endl;
+		this->sign = false;
 	}
 }
 
-Form::Form(const Form &form)
+Form::Form(const Form &form) : name(form.name), gradeSign(form.gradeSign), gradeExecute(form.gradeExecute)
 {
     this->sign = form.sign;
-    this->gradeSign = form.gradeSign;
-    this->gradeExecute = form.gradeExecute;
-    this->name = form.name;
 }
 
 Form &Form::operator=(const Form &form)
 {
     this->sign = form.sign;
-    this->gradeSign = form.gradeSign;
-    this->gradeExecute = form.gradeExecute;
-    this->name = form.name;
     return *this;
 }
 
-Form::Form()
+Form::Form() : gradeSign(0), gradeExecute(0)
 {
     return;
 }
@@ -65,7 +45,7 @@ Form::~Form()
     return;
 }
 
-std::string Form::getName() const
+const std::string Form::getName() const
 {
 	return (this->name);
 }
@@ -75,12 +55,12 @@ bool Form::getSign() const
 	return (this->sign);
 }
 
-unsigned int Form::getGradeExecute() const
+const unsigned int Form::getGradeExecute() const
 {
 	return (this->gradeExecute);
 }
 
-unsigned int Form::getGradeSign() const
+const unsigned int Form::getGradeSign() const
 {
 	return (this->gradeSign);
 }

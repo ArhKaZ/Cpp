@@ -14,12 +14,8 @@
 #include "incs/AForm.hpp"
 #include <cstdlib>
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(target, 25, 5)
 {
-    this->setName(target);
-    this->setGradeSign(25);
-    this->setGradeExecute(5);
-    this->setSign(false);
 }
 
 void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
@@ -34,20 +30,13 @@ void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
 	}
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &pdf)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &pdf) : AForm(pdf.getName(), pdf.getGradeSign(), pdf.getGradeExecute())
 {
-    this->setName(pdf.getName());
-    this->setSign(pdf.getSign());
-    this->setGradeExecute(pdf.getGradeExecute());
-    this->setGradeSign(pdf.getGradeSign());
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &pdf)
 {
-    this->setName(pdf.getName());
     this->setSign(pdf.getSign());
-    this->setGradeExecute(pdf.getGradeExecute());
-    this->setGradeSign(pdf.getGradeSign());
     return *this;
 }
 

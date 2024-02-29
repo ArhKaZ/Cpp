@@ -20,7 +20,7 @@ class AForm;
 class Bureaucrat
 {
 private:
-	std::string _name;
+	const std::string _name;
 	unsigned int _grade;
 public:
 	Bureaucrat();
@@ -28,7 +28,7 @@ public:
 	Bureaucrat(std::string name, unsigned int grade);
 	~Bureaucrat();
 	void	signForm(AForm &f);
-	std::string getName() const;
+	const std::string getName() const;
 	unsigned int getGrade() const;
 	void	incrGrade();
 	void	downGrade();

@@ -27,13 +27,11 @@ Bureaucrat::Bureaucrat()
 Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat)
 {
     this->_grade = bureaucrat._grade;
-    this->_name = bureaucrat._name;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &bureaucrat)
 {
     this->_grade = bureaucrat._grade;
-    this->_name = bureaucrat._name;
     return *this;
 }
 

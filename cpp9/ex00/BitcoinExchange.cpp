@@ -24,13 +24,15 @@ BitcoinExchange::~BitcoinExchange()
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &be)
 {
-	this->base = be.base;
+	this->base.erase(base.begin(), base.end());
+	this->base.insert(be.base.begin(), be.base.end());
 	return *this;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &be)
 {
-	this->base = be.base;
+	this->base.erase(base.begin(), base.end());
+	this->base.insert(be.base.begin(), be.base.end());
 }
 
 bool verif_date_string(std::string s)

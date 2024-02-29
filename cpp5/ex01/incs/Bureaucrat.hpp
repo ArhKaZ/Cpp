@@ -20,7 +20,7 @@ class Form;
 class Bureaucrat
 {
 	private:
-		std::string _name;
+		const std::string _name;
 		unsigned int _grade;
 	public:
         Bureaucrat();
