@@ -1,6 +1,8 @@
 #===========================VARIABLE===============================#
 SRCS			:=	main.cpp \
-					RPN.cpp \
+					PmergeMe.cpp\
+					PmergeMeVec.cpp\
+					PmergeMeList.cpp\
 
 OBJS_D			:=	objs/
 
@@ -8,11 +10,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	RPN.hpp\
+HEAD			:=	PmergeMe.hpp\
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	RPN
+NAME			:=	PmergeMe
 
 #=========================FLAG===============================#
 CC				:=	c++ -std=c++98
@@ -21,7 +23,7 @@ RM				:=	rm -rf
 
 CFLAGS			:=	-Wall -Wextra -Werror
 
-ASAN_F			:=	-g3 -fsanitize=address
+ASAN_F			:=	-g3
 
 #========================EXEC===============================#
 all				:	$(NAME)
