@@ -20,7 +20,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(targe
 
 void    PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-	if (this->getSign() == true && executor.getGrade() <= this->getGradeExecute())
+	if (this->getSign() && executor.getGrade() <= this->getGradeExecute())
 	{
 		std::cout << this->getName() << " is pardonned by Zaphod Beeblebrox" << std::endl;
 	}

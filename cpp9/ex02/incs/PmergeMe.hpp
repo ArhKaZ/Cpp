@@ -22,6 +22,7 @@
 #include <iterator>
 #include <list>
 #include <iomanip>
+#include <utility>
 
 class PmergeMe
 {
@@ -46,8 +47,12 @@ public:
 
 	double getTimeList() const;
 	double getTimeVec() const;
-	
+
+	typedef std::list<std::pair<int, int> > pairsList;
 private:
+	std::list<int> fusion(pairsList lst, bool isOdd, int odd);
+	pairsList sortPairs(pairsList myLst);
+	pairsList divideInPairs(std::list<int> lst);
 	std::vector<int> vecPm;
 	std::list<int> lstPm;
 	double timeList;

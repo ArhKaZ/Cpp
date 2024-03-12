@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	size_t size_inputs;
 	PmergeMe *PM;
-	if (argc != 2)
+	if (argc > 2)
 	{
 		try
 		{
