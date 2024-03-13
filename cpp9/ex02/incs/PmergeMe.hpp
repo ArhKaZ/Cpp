@@ -50,6 +50,7 @@ public:
 
 	typedef std::list<std::pair<int, int> > pairsList;
 private:
+	int* generateJacobstal();
 	std::list<int> fusion(pairsList lst, bool isOdd, int odd);
 	pairsList sortPairs(pairsList myLst);
 	pairsList divideInPairs(std::list<int> lst);

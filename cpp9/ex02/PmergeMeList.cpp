@@ -31,12 +31,12 @@ void print_lst(std::list<int> v1, std::list<int> v2)
 	std::cout << "\n";
 }
 
-std::list<int> merging(std::list<int> lstBig, std::list<int> lstLittle, int jac)
+void merging(std::list<int> *lstBig, std::list<int> *lstLittle, int jac)
 {
-	std::list<int>::iterator itLittle = lstLittle.begin();
-	std::list<int>::iterator itBig = lstBig.begin();
+	std::list<int>::iterator itLittle = lstLittle->begin();
+	std::list<int>::iterator itBig = lstBig->begin();
 	std::list<int>::iterator itnextBig;
-	int midBig = lstBig.size() / 2;
+	int midBig = lstBig->size() / 2;
 	int i = 1;
 	while (i < jac)
 	{
@@ -51,20 +51,93 @@ std::list<int> merging(std::list<int> lstBig, std::list<int> lstLittle, int jac)
 	}
 	itnextBig = itBig;
 	itnextBig++;
+	std::cout << "itBig: " << *itBig << " itLittle: " << *itLittle << " itnextBig: " << *itnextBig << std::endl;
 	while (!(*itLittle > *itBig && *itLittle < *itnextBig))
 	{
+		if (*itLittle < *itBig && itBig == lstBig->begin())
+			break ;
 		if (*itLittle < *itBig)
 		{
-			
+			midBig /= 2;
+			while (i > midBig)
+			{
+				itBig--;
+				i--;
+			}
+		}
+		else if (*itLittle > *itnextBig)
+		{
+			midBig += midBig / 2;
+			while (i < midBig)
+			{
+				itBig++;
+				i++;
+			}
 		}
 	}
+	lstBig->insert(itBig, *itLittle);
+	lstLittle->erase(itLittle);
+}
+
+void insert_odd(std::list<int> *lstBig, int odd)
+{
+	std::list<int>::iterator itBig = lstBig->begin();
+	std::list<int>::iterator itnextBig;
+	int midBig = lstBig->size() / 2;
+	int i = 1;
+	i = 1;
+	while (i < midBig)
+	{
+		itBig++;
+		i++;
+	}
+	itnextBig = itBig;
+	itnextBig++;
+	while (!(odd > *itBig && odd < *itnextBig))
+	{
+		if (odd < *itBig)
+		{
+			midBig /= 2;
+			while (i > midBig)
+			{
+				itBig--;
+				i--;
+			}
+		}
+		else if (odd > *itnextBig)
+		{
+			midBig += midBig / 2;
+			while (i < midBig)
+			{
+				itBig++;
+				i++;
+			}
+		}
+	}
+	lstBig->insert(itBig, odd);
+}
+
+int* PmergeMe::generateJacobstal()
+{
+	int *jacob = new int[20];
+	int i = 3;
+	jacob[0] = 0;
+	jacob[1] = 1;
+	jacob[2] = 3;
+	while (i < 20)
+	{
+		jacob[i] = jacob[i - 1] + 2 * jacob[i - 2];
+		i++;
+	}
+	return (jacob);
 }
 
 std::list<int> PmergeMe::fusion(PmergeMe::pairsList lst, bool isOdd, int odd)
 {
 	std::list<int> lstBig;
 	std::list<int> lstLittle;
-	std::list<int> res;
+	int 			*jacs;
+	int 			i = 0;
 	pairsList::iterator it;
 
 	for(it = lst.begin(); it != lst.end(); it++)
@@ -72,7 +145,14 @@ std::list<int> PmergeMe::fusion(PmergeMe::pairsList lst, bool isOdd, int odd)
 		lstBig.push_back(it->first);
 		lstLittle.push_back(it->second);
 	}
-	res =
+	jacs = generateJacobstal();
+	while (!lstLittle.empty())
+	{
+		merging(&lstBig, &lstLittle, jacs[i++]);
+	}
+	if (isOdd)
+		insert_odd(&lstBig, odd);
+	return (lstBig);
 }
 
 PmergeMe::pairsList PmergeMe::divideInPairs(std::list<int> myLst)
@@ -149,7 +229,7 @@ void PmergeMe::lstSort()
 
 	if (this->lstPm.size() % 2 == 1)
 	{
-		is_odd = true;
+		isOdd = true;
 		odd = *lstPm.end();
 		lstPm.pop_back();
 	}
@@ -159,6 +239,7 @@ void PmergeMe::lstSort()
 	tmp = sortPairs(tmp);
 	std::cout << "next : " << std::endl;
 	displayLst(tmp);
+	this->lstPm = fusion(tmp, isOdd, odd);
 	timeEnd = clock();
 	this->timeList = static_cast<double>(timeEnd - timeBegin) / CLOCKS_PER_SEC * 1000000;
 }
