@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 20:38:52 by syluiset          #+#    #+#             */
-/*   Updated: 2024/03/04 20:48:34 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:18:48 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ void PmergeMe::lstSort()
 	tmp = sortPairs(tmp);
 	std::cout << "next : " << std::endl;
 	displayLst(tmp);
-	this->lstPm = fusion(tmp, isOdd, odd);
+	this->lstPm = fusion(tmp, isOdd, odd); // index.pow(2) - index;
 	timeEnd = clock();
 	this->timeList = static_cast<double>(timeEnd - timeBegin) / CLOCKS_PER_SEC * 1000000;
 }
