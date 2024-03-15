@@ -49,11 +49,16 @@ public:
 	double getTimeVec() const;
 
 	typedef std::list<std::pair<int, int> > pairsList;
+	typedef std::vector<std::pair<int, int> > pairsVec;
 private:
-	int* generateJacobstal();
-	std::list<int> fusion(pairsList lst, bool isOdd, int odd);
-	pairsList sortPairs(pairsList myLst);
-	pairsList divideInPairs(std::list<int> lst);
+	std::list<int> generateJacobstalLst();
+	std::vector<int> generateJacobstalVec();
+	std::list<int> fusionLst(pairsList lst, bool isOdd, int odd);
+	std::vector<int> fusionVec(pairsVec lst, bool isOdd, int odd);
+	void sortPairsLst(pairsList *myLst);
+	void sortPairsVec(pairsVec *myLst);
+	pairsList divideInPairsLst(std::list<int> lst);
+	pairsVec divideInPairsVec(std::vector<int> lst);
 	std::vector<int> vecPm;
 	std::list<int> lstPm;
 	double timeList;

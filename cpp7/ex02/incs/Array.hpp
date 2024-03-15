@@ -17,14 +17,6 @@
 template<typename T>
 class Array
 {
-class IndexOutOfRange : public std::exception
-	{
-	public:
-		virtual const char* what() const throw()
-		{
-			return "Index is out of range !";
-		}
-	};
 public:
 	Array(){}
 	~Array()
@@ -55,7 +47,7 @@ public:
 	T& operator[](int x)
 	{
 			if (x < 0 || static_cast<size_t>(x) >= this->_size)
-				throw IndexOutOfRange();
+				throw std::exception();
 			else
 				return this->_tab[x];
 	}

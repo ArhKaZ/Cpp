@@ -7,11 +7,11 @@ OBJS			:=	$(SRCS:%.cpp=$(OBJS_D)%.o)
 
 HEAD_D			:=	incs/
 
-HEAD			:=	MyTemp.hpp
+HEAD			:=	whatever.hpp
 
 HEAD_A			:=	$(addprefix $(HEAD_D), $(HEAD))
 
-NAME			:=	FirstTemplate
+NAME			:=	whatever
 
 #=========================FLAG===============================#
 CC				:=	c++ -std=c++98

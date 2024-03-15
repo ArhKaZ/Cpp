@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 		PM->vecSort();
 		PM->lstSort();
 		std::cout << "After: ";
-		PM->displayVector();
+		PM->displayList();
 		std::cout << "Time to process a range of " << size_inputs << " elements with std::list : " << std::fixed << std::setprecision(5) << PM->getTimeList() << " us\n";
 		std::cout << "Time to process a range of " << size_inputs << " elements with std::vector : " << std::fixed << std::setprecision(5) << PM->getTimeVec() << " us\n";
 		delete PM;
