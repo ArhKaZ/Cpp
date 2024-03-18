@@ -25,6 +25,7 @@ CFLAGS			:=	-Wall -Wextra -Werror
 
 ASAN_F			:=	-g3 -fsanitize=address
 
+#ASAN_F			:= -g3
 #========================EXEC===============================#
 all				:	$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:12:58 by syluiset          #+#    #+#             */
-/*   Updated: 2024/03/04 20:59:55 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:24:07 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ public:
 	typedef std::list<std::pair<int, int> > pairsList;
 	typedef std::vector<std::pair<int, int> > pairsVec;
 private:
-	std::list<int> generateJacobstalLst();
-	std::vector<int> generateJacobstalVec();
+	std::list<int> generateJacobstalLst(size_t size);
+	std::vector<int> generateJacobstalVec(size_t size);
 	std::list<int> fusionLst(pairsList lst, bool isOdd, int odd);
 	std::vector<int> fusionVec(pairsVec lst, bool isOdd, int odd);
 	void sortPairsLst(pairsList *myLst);

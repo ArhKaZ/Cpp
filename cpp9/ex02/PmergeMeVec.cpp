@@ -6,11 +6,22 @@
 /*   By: syluiset <syluiset@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:13:03 by syluiset          #+#    #+#             */
-/*   Updated: 2024/03/04 20:50:34 by syluiset         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:45:39 by syluiset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+void displayVec(std::vector<int> vec)
+{
+	std::vector<int>::iterator it;
+	std::cout << "DisplayVec :";
+	for (it = vec.begin(); it != vec.end(); it++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << "\n";
+}
 
 void merging(std::vector<int> *vecBig, std::vector<int> vecLittle, int jac)
 {
@@ -22,7 +33,12 @@ void merging(std::vector<int> *vecBig, std::vector<int> vecLittle, int jac)
 	int midBig;
 	int i;
 	if (jac == 1)
-		lastjac = 0;
+	{
+		vecBig->insert(vecBig->begin(), *vecLittle.begin());
+		return;
+	}
+	if (jac > static_cast<int>(vecLittle.size()))
+		jactmp = --jac;
 	while (1)
 	{
 		itLittle = vecLittle.begin();
@@ -31,57 +47,50 @@ void merging(std::vector<int> *vecBig, std::vector<int> vecLittle, int jac)
 		{
 			itLittle++;
 			if (itLittle == --vecLittle.end())
-			{
 				break;
-			}
 		}
 		midBig = vecBig->size() / 2;
 		for (i = 1; i < midBig; i++)
 		{
 			itBig++;
 		}
+		if (itBig == vecBig->end())
+			itBig--;
 		itnextBig = itBig;
 		itnextBig++;
-
 		while (!(*itLittle > *itBig && *itLittle < *itnextBig))
 		{
 			if (*itLittle < *itBig && itBig == vecBig->begin())
-			{
 				break;
-			}
+			if (*itLittle > *itnextBig && itnextBig == vecBig->end())
+				break;
 			else if (*itLittle > *itnextBig)
 			{
-				i = midBig;
-				midBig += vecBig->size() / 2 - (midBig - 1);
-				std::cout << "midBig : " << midBig << "\n";
-				while (i < midBig)
-				{
-					itBig++;
-					itnextBig++;
-					i++;
-				}
-				std::cout << "itBig after iter : " << *itBig << " itnext after iter : " << *itnextBig << "\n";
+				itBig++;
+				itnextBig++;
 			}
 			else if (*itLittle < *itBig)
 			{
-				i = midBig;
-				midBig = midBig / 2;
-				while (i > midBig)
-				{
-					itBig--;
-					itnextBig--;
-					i--;
-				}
+				itBig--;
+				itnextBig--;
 			}
-
 		}
+		// std::cout << "vecBig :";
+		// displayVec(*vecBig);
+		// std::cout << "vecLittle :";
+		// displayVec(vecLittle);
+		// std::cout << "itLit : " << *itLittle;
+		// std::cout << " itBig : " << *itBig;
+		// std::cout << " itNext : " << *itnextBig << std::endl;
+		// std::cerr << "size : " << vecBig->size();
 		if (*itLittle < *itBig && itBig == vecBig->begin())
 			vecBig->insert(itBig, *itLittle);
 		else
 			vecBig->insert(itnextBig, *itLittle);
-		if (jactmp - lastjac == 1)
-			break;
 		--jactmp;
+		// std::cout << "jac :" << jac << " jactmp :" << jactmp << " lastjac" << lastjac << std::endl;
+		if (jactmp == lastjac || jactmp == 1)
+			break;
 	}
 	lastjac = jac;
 }
@@ -90,14 +99,6 @@ void insert_odd(std::vector<int> *vecBig, int odd)
 {
 	std::vector<int>::iterator itBig = vecBig->begin();
 	std::vector<int>::iterator itnextBig;
-	int midBig = vecBig->size() / 2;
-	int i = 1;
-	i = 1;
-	while (i < midBig)
-	{
-		itBig++;
-		i++;
-	}
 	itnextBig = itBig;
 	itnextBig++;
 	while (!(odd > *itBig && odd < *itnextBig))
@@ -108,45 +109,39 @@ void insert_odd(std::vector<int> *vecBig, int odd)
 		}
 		else if (odd > *itnextBig)
 		{
-			i = midBig;
-			midBig += 1;
-			while (i < midBig)
-			{
-				itBig++;
-				itnextBig++;
-				i++;
-			}
+			itBig++;
+			itnextBig++;
 		}
 		else if (odd < *itBig)
 		{
-			i = midBig;
-			midBig -= 1;
-			while (i > midBig)
-			{
-				itBig--;
-				itnextBig--;
-				i--;
-			}
+			itBig++;
+			itnextBig++;
 		}
 	}
 	vecBig->insert(itnextBig, odd);
 }
 
-std::vector<int> PmergeMe::generateJacobstalVec()
+std::vector<int> PmergeMe::generateJacobstalVec(size_t size)
 {
+	std::cout << size;
 	std::vector<int> jacob;
+	jacob.reserve(20);
 	jacob.push_back(1);
 	jacob.push_back(3);
 	std::vector<int>::iterator it = jacob.begin();
-	std::vector<int>::iterator itnext = jacob.begin()++;
+	std::vector<int>::iterator itnext = jacob.begin();
+	itnext++;
+	if (*itnext >= static_cast<int>(size))
+		return (jacob);
 	while (1)
 	{
+		if (*itnext + 2 * *it > static_cast<int>(size))
+			break;
 		jacob.push_back(*itnext + 2 * *it);
 		it++;
 		itnext++;
-		if (*itnext >= static_cast<int>(this->vecPm.size()))
-			break;
 	}
+	std::cerr << "cc";
 	return (jacob);
 }
 
@@ -155,7 +150,7 @@ bool contain(int nb, std::vector<int> con)
 	std::vector<int>::iterator it;
 	std::vector<int>::iterator ite = con.end();
 
-	for(it = con.begin(); it != ite; it++)
+	for (it = con.begin(); it != ite; it++)
 	{
 		if (*it == nb)
 			return true;
@@ -172,16 +167,16 @@ std::vector<int> PmergeMe::fusionVec(PmergeMe::pairsVec vec, bool isOdd, int odd
 	pairsVec::iterator it;
 	std::vector<int>::iterator last;
 
-	for(it = vec.begin(); it != vec.end(); it++)
+	for (it = vec.begin(); it != vec.end(); it++)
 	{
 		vecBig.push_back(it->first);
 		vecLittle.push_back(it->second);
 	}
-	jacs = generateJacobstalVec();
+	jacs = generateJacobstalVec(vecLittle.size());
+	displayVec(jacs);
 	for (itj = jacs.begin(); itj != jacs.end(); itj++)
 	{
 		merging(&vecBig, vecLittle, *itj);
-		std::cerr << "Liste apres merging ";
 		if (contain(*--vecLittle.end(), vecBig))
 			break;
 	}
@@ -195,7 +190,7 @@ PmergeMe::pairsVec PmergeMe::divideInPairsVec(std::vector<int> myVec)
 	pairsVec pairVec;
 	std::vector<int>::iterator itnow = myVec.begin();
 	std::vector<int>::iterator itnext;
-	std::pair<int,int> pairs;
+	std::pair<int, int> pairs;
 
 	while (1)
 	{
@@ -247,7 +242,6 @@ void PmergeMe::sortPairsVec(std::vector<std::pair<int, int> > *myVec)
 	}
 }
 
-
 void PmergeMe::vecSort()
 {
 	clock_t timeBegin, timeEnd;
@@ -273,10 +267,18 @@ void PmergeMe::displayVector() const
 {
 	std::vector<int>::const_iterator it;
 	std::vector<int>::const_iterator ite = this->vecPm.end();
-
-	for(it = this->vecPm.begin(); it != ite; it++)
+	size_t i = 0;
+	
+	for (it = this->vecPm.begin(); it != ite; it++)
 	{
-		std::cout << *it << " ";
+		if (i < 25 || this->vecPm.size() - i < 3)
+			std::cout << *it << " ";
+		else
+		{
+			if (i == 25)
+				std::cout << "[...]";
+		}
+		i++;
 	}
 	std::cout << "\n";
 }
@@ -285,4 +287,3 @@ double PmergeMe::getTimeVec() const
 {
 	return this->timeVec;
 }
-
