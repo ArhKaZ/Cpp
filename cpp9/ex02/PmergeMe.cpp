@@ -57,3 +57,23 @@ const char *PmergeMe::NumericError::what() const throw()
 {
 	return "Error with inputs";
 }
+
+double PmergeMe::getTimeList() const
+{
+	return this->timeList;
+}
+
+double PmergeMe::getTimeVec() const
+{
+	return this->timeVec;
+}
+
+std::list<int> PmergeMe::getLst() const
+{
+	return this->lstPm;
+}
+
+std::vector<int> PmergeMe::getVec() const
+{
+	return this->vecPm;
+}

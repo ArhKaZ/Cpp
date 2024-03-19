@@ -12,161 +12,74 @@
 
 #include "incs/PmergeMe.hpp"
 
-void displayLst(std::list<std::pair<int, int> > lst)
+int getPosition(std::list<int> lst, int nb, int begin, int end)
 {
-	std::list<std::pair<int, int> >::iterator it;
-	std::list<std::pair<int, int> >::iterator ite = lst.end();
-	for (it = lst.begin(); it != ite; it++)
-	{
-		std::cout << "first : " << it->first << " seconde : " << it->second << std::endl;
-	}
-}
+	int middle;
+	std::list<int>::iterator itLow;
+	std::list<int>::iterator itMid;
+	std::list<int>::iterator itHigh;
 
-void print_lst(std::list<int> v1)
-{
-	std::list<int>::iterator itV1;
-	std::list<int>::iterator iteV1 = v1.end();
-
-	for (itV1 = v1.begin(); itV1 != iteV1; itV1++)
-	{
-		std::cerr << *itV1 << " ";
-	}
-	std::cerr << "\n";
+	if (begin == 0 && end == 1)
+		return (1);
+	itMid = lst.begin();
+	middle = (begin + end) / 2;
+	for (int i = 1; i < middle; i++)
+		itMid++;
+	if (middle == 1 && nb < *itMid)
+		return (1);
+	itLow = itMid;
+	itLow--;
+	itHigh = itMid;
+	itHigh++;
+	if (nb > *itLow && nb < *itMid)
+		return (middle);
+	else if (nb > *itMid && nb < *itHigh)
+		return (middle + 1);
+	if (nb > *itMid)
+		return getPosition(lst, nb, middle, end);
+	else
+		return getPosition(lst, nb, begin, middle);
 }
 
 void merging(std::list<int> *lstBig, std::list<int> lstLittle, int jac)
 {
-	static int lastjac;
-	int jactmp = jac;
 	std::list<int>::iterator itLittle;
 	std::list<int>::iterator itBig;
-	std::list<int>::iterator itnextBig;
-	int begin = 0;
-	int end = lstBig->size();
-	int middle = 0;
-	int i;
-	if (jac == 1)
-		lastjac = 0;
-	if (jac > static_cast<int>(lstLittle.size()))
-		jactmp = --jac;
-	while (1)
-	{
-		std::cerr << "\nPremier while : \n";
-		itLittle = lstLittle.begin();
-		for (i = 1; i < jactmp; i++)
-		{
-			itLittle++;
-			if (itLittle == --lstLittle.end())
-				break;
-		}
-		itBig = lstBig->begin();
-		middle = (begin + end) / 2;
-		for (i = 0; i < middle; i++)
-		{
-			itBig++;
-		}
-		itnextBig = itBig;
-		itnextBig++;
-		// std::cout << "itLit : " << *itLittle;
-		// std::cout << " itBig : " << *itBig;
-		// std::cout << " itNext : " << *itnextBig << std::endl;
-		// std::cerr << "size : " << lstBig->size();
-		while (!(*itLittle > *itBig && *itLittle < *itnextBig))
-		{
-			// std::cout << "Seconde while \n";
-			// std::cout << "itBig : " << *itBig << "itnext : " << *itnextBig << "\n";
-			if (*itLittle < *itBig && itBig == lstBig->begin())
-				break;
-			if (*itLittle > *itnextBig && itnextBig == lstBig->end())
-				break;
-			if (*itLittle > *itnextBig)
-			{
-				begin = middle + 1;
-				itBig++;
-				itnextBig++;
-			}
-			else if (*itLittle < *itBig)
-			{
-				itBig--;
-				itnextBig--;
-			}
-		}
-		// std::cout << "Sortie Deuxieme : \n";
-		// std::cout << "lstBig :";
-		// print_lst(*lstBig);
-		// std::cout << "lstLittle :";
-		// print_lst(lstLittle);
-		// std::cout << "itLit : " << *itLittle;
-		// std::cout << " itBig : " << *itBig;
-		// std::cout << " itNext : " << *itnextBig << std::endl;
-		// std::cerr << "size : " << lstBig->size();
-		if (*itLittle < *itBig && itBig == lstBig->begin())
-			lstBig->insert(itBig, *itLittle);
-		else
-			lstBig->insert(itnextBig, *itLittle);
-		--jactmp;
-		// std::cout << "jac :" << jac << " jactmp :" << jactmp << " lastjac" << lastjac << "\n\n";
-		if (jactmp == lastjac || jactmp == 1)
-			break;
-	}
-	// std::cout << "Sortie premiere : \n";
-	lastjac = jac;
+	int pos;
+
+	itLittle = lstLittle.begin();
+	itBig = lstBig->begin();
+	for (int i = 1; i < jac; i++)
+		itLittle++;
+	pos = getPosition(*lstBig, *itLittle, 0, lstBig->size());
+	for (int i = 1; i < pos; i++)
+		itBig++;
+	lstBig->insert(itBig, *itLittle);
 }
 
 void insert_odd(std::list<int> *lstBig, int odd)
 {
 	std::list<int>::iterator itBig = lstBig->begin();
-	std::list<int>::iterator itnextBig;
-	int midBig = lstBig->size() / 2;
-	int i = 1;
-	i = 1;
-	while (i < midBig)
-	{
+	int pos;
+
+	pos = getPosition(*lstBig, odd, 0, lstBig->size());
+	for (int i = 1; i < pos; i++)
 		itBig++;
-		i++;
-	}
-	itnextBig = itBig;
-	itnextBig++;
-	while (!(odd > *itBig && odd < *itnextBig))
-	{
-		if (odd < *itBig && itBig == lstBig->begin())
-		{
-			break;
-		}
-		else if (odd > *itnextBig)
-		{
-			i = midBig;
-			midBig += 1;
-			while (i < midBig)
-			{
-				itBig++;
-				itnextBig++;
-				i++;
-			}
-		}
-		else if (odd < *itBig)
-		{
-			i = midBig;
-			midBig -= 1;
-			while (i > midBig)
-			{
-				itBig--;
-				itnextBig--;
-				i--;
-			}
-		}
-	}
-	lstBig->insert(itnextBig, odd);
+	lstBig->insert(itBig, odd);
 }
 
 std::list<int> PmergeMe::generateJacobstalLst(size_t size)
 {
 	std::list<int> jacob;
 	jacob.push_back(1);
-	jacob.push_back(3);
+	if (size >= 3)
+		jacob.push_back(3);
+	jacob.push_back(2);
 	std::list<int>::iterator itFirst = jacob.begin();
 	std::list<int>::iterator itScd = jacob.begin();
-	int nb_jacob;
+	int jacobNow = 3;
+	int jacobBefore = 3;
+	int jacobTmp;
 
 	itScd++;
 	if (size <= 3)
@@ -174,26 +87,28 @@ std::list<int> PmergeMe::generateJacobstalLst(size_t size)
 	while (1)
 	{
 		if (*itScd + 2 * *itFirst > static_cast<int>(size))
-			break;
-		jacob.push_back(*itScd + 2 * *itFirst);
-		itFirst++;
-		itScd++;
-	}
-	itFirst = jacob.begin();
-	itScd = jacob.begin();
-	nb_jacob = 0;
-	while (itScd != jacob.end())
-	{
-		if (*itScd - *itFirst > 1)
-			nb_jacob = *itScd;
-		else
-			nb_jacob = 0;
-		if (nb_jacob != 0)
 		{
-			jacob.insert(itScd, --nb_jacob);
+			jacobTmp = size;
+			while (jacobTmp - jacobBefore > 1)
+			{
+				jacob.push_back(jacobTmp);
+				jacobTmp--;
+			}
+			break;
 		}
-		itFirst++;
-		itScd++;
+		jacobNow = *itScd + 2 * *itFirst;
+		jacob.push_back(jacobNow);
+		jacobTmp = jacobNow;
+		while (jacobTmp - jacobBefore > 1)
+		{
+			jacobTmp--;
+			jacob.push_back(jacobTmp);
+		}
+		while (*itFirst != jacobBefore)
+			itFirst++;
+		while (*itScd != jacobNow)
+			itScd++;
+		jacobBefore = jacobNow;
 	}
 	return (jacob);
 }
@@ -224,10 +139,8 @@ std::list<int> PmergeMe::fusionLst(PmergeMe::pairsList lst, bool isOdd, int odd)
 	{
 		lstBig.push_back(it->first);
 		lstLittle.push_back(it->second);
-	}	
+	}
 	jacs = generateJacobstalLst(lstLittle.size());
-	std::cout << "jacs : ";
-	print_lst(jacs);
 	for (itj = jacs.begin(); itj != jacs.end(); itj++)
 	{
 		merging(&lstBig, lstLittle, *itj);
@@ -245,7 +158,6 @@ PmergeMe::pairsList PmergeMe::divideInPairsLst(std::list<int> myLst)
 	pairsList pairLst;
 	std::list<int>::iterator itnow = myLst.begin();
 	std::list<int>::iterator itnext;
-	std::pair<int, int> pairs;
 
 	while (myLst.size() >= 2)
 	{
@@ -269,11 +181,12 @@ PmergeMe::pairsList PmergeMe::divideInPairsLst(std::list<int> myLst)
 
 void PmergeMe::sortPairsLst(std::list<std::pair<int, int> > *myLst)
 {
-	pairsList newList;
 	pairsList::iterator it = myLst->begin();
 	pairsList::iterator itnext;
 	int tmp;
 
+	if (myLst->size() == 1)
+		return;
 	while (1)
 	{
 		itnext = it;
@@ -326,11 +239,11 @@ void PmergeMe::displayList() const
 
 	for (it = this->lstPm.begin(); it != ite; it++)
 	{
-		if (i < 25 || this->lstPm.size() - i < 3)
+		if (i < 10 || this->lstPm.size() - i < 10)
 			std::cout << *it << " ";
 		else
 		{
-			if (i == 25)
+			if (i == 10)
 				std::cout << "[...]";
 		}
 		i++;
@@ -338,12 +251,3 @@ void PmergeMe::displayList() const
 	std::cout << "\n";
 }
 
-double PmergeMe::getTimeList() const
-{
-	return this->timeList;
-}
-
-std::list<int> PmergeMe::getLst() const
-{
-	return this->lstPm;
-}

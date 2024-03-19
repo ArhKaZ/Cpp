@@ -25,6 +25,36 @@ bool containsDuplicates(const std::list<int>& lst) {
     return false;
 }
 
+bool isSortVec(std::vector<int> vec)
+{
+	std::vector<int>::const_iterator it, it2;
+	for (it = vec.begin(); it != vec.end(); ++it)
+	{
+		it2 = it;
+		for (++it2; it2 != vec.end(); ++it2)
+		{
+			if (*it > *it2)
+				return false;
+		}
+	}
+	return true;
+}
+
+bool isSortLst(std::list<int> lst)
+{
+	std::list<int>::const_iterator it, it2;
+	for (it = lst.begin(); it != lst.end(); ++it)
+	{
+		it2 = it;
+		for (++it2; it2 != lst.end(); ++it2)
+		{
+			if (*it > *it2)
+				return false;
+		}
+	}
+	return true;
+}
+
 int main(int argc, char **argv)
 {
 	size_t size_inputs;
@@ -42,7 +72,13 @@ int main(int argc, char **argv)
 		}
 		if (containsDuplicates(PM->getLst()))
 		{
-			std::cout << "Number are duplicate";
+			std::cerr << "Number are duplicate\n";
+			delete PM;
+			return -1;
+		}
+		if (isSortVec(PM->getVec()))
+		{
+			std::cerr << "List is already sorted\n";
 			delete PM;
 			return -1;
 		}
@@ -56,6 +92,10 @@ int main(int argc, char **argv)
 		PM->displayList();
 		std::cout << "Time to process a range of " << size_inputs << " elements with std::list : " << std::fixed << std::setprecision(5) << PM->getTimeList() << " us\n";
 		std::cout << "Time to process a range of " << size_inputs << " elements with std::vector : " << std::fixed << std::setprecision(5) << PM->getTimeVec() << " us\n";
+		if (!isSortVec(PM->getVec()) || !isSortLst(PM->getLst()))
+			std::cout << "List or vector are not sorted\n";
+		else
+			std::cout << "List and vector are sorted\n";
 		delete PM;
 	}
 }

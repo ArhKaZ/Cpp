@@ -40,6 +40,7 @@ public:
 
 	void vecSort();
 	void displayVector() const;
+	std::vector<int> getVec() const;
 
 	void lstSort();
 	std::list<int> getLst() const;
@@ -52,13 +53,15 @@ public:
 	typedef std::vector<std::pair<int, int> > pairsVec;
 private:
 	std::list<int> generateJacobstalLst(size_t size);
-	std::vector<int> generateJacobstalVec(size_t size);
 	std::list<int> fusionLst(pairsList lst, bool isOdd, int odd);
-	std::vector<int> fusionVec(pairsVec lst, bool isOdd, int odd);
 	void sortPairsLst(pairsList *myLst);
-	void sortPairsVec(pairsVec *myLst);
 	pairsList divideInPairsLst(std::list<int> lst);
+
+	std::vector<int> generateJacobstalVec(size_t size);
+	std::vector<int> fusionVec(pairsVec lst, bool isOdd, int odd);
+	void sortPairsVec(pairsVec *myLst);
 	pairsVec divideInPairsVec(std::vector<int> lst);
+
 	std::vector<int> vecPm;
 	std::list<int> lstPm;
 	double timeList;
