@@ -24,6 +24,7 @@ int main()
 	Span sp3 = Span(100000);
 	Span sp4 = Span(2);
 	srand(time(NULL));
+	std::list<int>::iterator 
 	for(unsigned int i = 0; i < sp3.getMax(); i++)
 	{
 		sp3.addNumber(rand() % 100000 + 1);
@@ -36,11 +37,11 @@ int main()
 	std::cout << "shortestSpan for sp : " << sp.shortestSpan() << std::endl;
 	std::cout << "longestSpan for sp : " << sp.longestSpan() << std::endl;
 	sp2.addNumber(34);
-	sp2.addSeveralNumber(sp._lst, 1, 5);
-	for_each(sp2._lst.begin(), sp2._lst.end(), display_number);
+	sp2.addSeveralNumber(sp.getList(), 1, 5);
+
 	std::cout << "\n";
 	sp2.addNumber(42);
-	for_each(sp2._lst.begin(), sp2._lst.end(), display_number);
+	for_each(sp2.getList().begin(), sp2.getList().end(), display_number);
 	std::cout << std::endl;
 	std::cout << "shortestSpan for sp3 : " << sp3.shortestSpan() << std::endl;
 	std::cout << "longestSpan for sp3 : " << sp3.longestSpan() << std::endl;
@@ -67,7 +68,7 @@ int main()
 	try
 	{
 		std::cout << "Add several number of sp3 list in sp2" << std::endl;
-		sp2.addSeveralNumber(sp3._lst, 531, 1000);
+		sp2.addSeveralNumber(sp3.getList(), 531, 1000);
 		std::cout << "It work !" << std::endl;
 	}
 	catch (std::exception &e)

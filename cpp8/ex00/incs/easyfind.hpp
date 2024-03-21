@@ -15,23 +15,20 @@
 
 #include <list>
 #include <vector>
+#include <algorithm>
 #include <iostream>
+#include <exception>
 
 template< typename T >
-int easyfind(T arg1, int arg2)
+void easyfind(T arg1, int arg2)
 {
-	typename T::const_iterator it;
-	typename T::const_iterator end = arg1.end();
-	for(it = arg1.begin(); it != end; it++)
-	{
-		if (*it == arg2)
-		{
-			std::cout << arg2 << " find in the list" << std::endl;
-			return (0);
-		}
-	}
-	std::cout << arg2 << " not in the list" << std::endl;
-	return (-1);
+	typename T::iterator res;
+
+	res = std::find(arg1.begin(), arg1.end(), arg2);
+	if (res == arg1.end())
+		throw std::exception();
+	else
+		std::cout << arg2 << " is on the list" << std::endl;
 }
 
 #endif

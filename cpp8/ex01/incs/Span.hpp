@@ -20,7 +20,7 @@
 class Span
 {
 public:
-	std::list<int> _lst;
+
 	Span();
 	~Span();
 	Span(unsigned int N);
@@ -30,6 +30,7 @@ public:
 	int shortestSpan();
 	int longestSpan();
 	void addSeveralNumber(std::list<int> lst, unsigned int begin, unsigned int end);
+	std::list<int> getList();
 	unsigned int getMax();
 	class AddToMuchNb : public std::exception
 	{
@@ -42,6 +43,7 @@ public:
 		virtual const char* what() const throw();
 	};
 private:
+	std::list<int> _lst;
 	unsigned int _max;
 };
 
