@@ -30,6 +30,7 @@ public:
 	int shortestSpan();
 	int longestSpan();
 	void addSeveralNumber(std::list<int> lst, unsigned int begin, unsigned int end);
+	void displayList();
 	std::list<int> getList();
 	unsigned int getMax();
 	class AddToMuchNb : public std::exception

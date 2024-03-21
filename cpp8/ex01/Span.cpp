@@ -147,3 +147,14 @@ const char* Span::ListNonUsable::what() const throw()
 {
 	return "List as none or only one number !";
 }
+
+void Span::displayList()
+{
+	std::list<int>::iterator it;
+
+	for (it = this->_lst.begin(); it != this->_lst.end(); it++)
+	{
+		std::cout << "nb :" << *it << " || ";
+	}
+	std::cout << "\n";
+}
