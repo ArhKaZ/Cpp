@@ -14,7 +14,7 @@
 #include "incs/RPN.hpp"
 
 int main(int argc, char **argv)
-{ // Faire directement les operations lors qu'on stock (utiliser stack)
+{
 	if (argc == 2)
 	{
 		RPN myRpn(argv[1]);

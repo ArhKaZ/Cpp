@@ -35,18 +35,22 @@ RPN::RPN(const std::string &s)
 
 	for (size_t i = 0; i < s.size(); i++)
 	{
-
 		if (s[i] == '.' || s[i] == '(' || s[i] == ')')
 		{
 			std::cout << "ERROR" << std::endl;
 			return ;
 		}
-		if (s[i] >= 48 && s[i] <= 57)
+		else if (s[i] >= 48 && s[i] <= 57)
 		{
 			this->calc.push(atoi(&s[i]));
 		}
-		if (s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*')
+		else if (s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*')
 		{
+			if (this->calc.size() != 2)
+			{
+				std::cout << "Error with inputs" << std::endl;
+				return ;
+			}
 			ope = s[i];
 			i++;
 			nb2 = this->calc.top();
@@ -62,6 +66,11 @@ RPN::RPN(const std::string &s)
 				std::cerr << e.what() << '\n';
 				exit(EXIT_FAILURE);
 			}
+		}
+		else if (s[i] != ' ')
+		{
+			std::cout << "Error with inputs" << std::endl;
+			return ;
 		}
 	}
 	if (this->calc.size() > 1)
