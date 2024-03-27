@@ -145,6 +145,10 @@ double BitcoinExchange::calc_exchange(std::string sDateInput)
 	std::map<std::string, double>::iterator itlow;
 
 	itlow = this->base.lower_bound(sDateInput);
+	if (itlow == this->base.end())
+		itlow--;
+	if (itlow->first > sDateInput)
+		itlow--;
 	return (itlow->second);
 }
 

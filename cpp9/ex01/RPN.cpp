@@ -27,32 +27,45 @@ RPN::RPN(const RPN &rpn)
 	this->calc = rpn.calc;
 }
 
+bool isInvalidChar(char c)
+{
+	if (c == ' ' || c == '+' || c == '-' || c == '/' || c == '*' || (c >= 48 && c <= 57))
+		return false;
+	return true;
+}
+
 RPN::RPN(const std::string &s)
 {
 	int nb1;
 	int nb2;
 	char ope;
+	int tmp;
 
 	for (size_t i = 0; i < s.size(); i++)
 	{
-		if (s[i] == '.' || s[i] == '(' || s[i] == ')')
+		if (isInvalidChar(s[i]))
 		{
-			std::cout << "ERROR" << std::endl;
+			std::cout << "Using invalid characters !" << std::endl;
 			return ;
 		}
-		else if (s[i] >= 48 && s[i] <= 57)
+		if (s[i] >= 48 && s[i] <= 57)
 		{
-			this->calc.push(atoi(&s[i]));
+			tmp = atoi(&s[i]);
+			if (tmp > 9 || tmp < 0)
+			{
+				std::cout << "Number higher than 9 or lower than 0 \n";
+				return;
+			}
+			this->calc.push(tmp);
 		}
 		else if (s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*')
 		{
-			if (this->calc.size() != 2)
-			{
-				std::cout << "Error with inputs" << std::endl;
-				return ;
-			}
 			ope = s[i];
-			i++;
+			if (this->calc.size() < 2)
+			{
+				std::cout << "Need more number for this operation !\n";
+				return;
+			}
 			nb2 = this->calc.top();
 			this->calc.pop();
 			nb1 = this->calc.top();
@@ -67,18 +80,11 @@ RPN::RPN(const std::string &s)
 				exit(EXIT_FAILURE);
 			}
 		}
-		else if (s[i] != ' ')
-		{
-			std::cout << "Error with inputs" << std::endl;
-			return ;
-		}
 	}
-	if (this->calc.size() > 1)
-	{
-		std::cout << "Error with you'r inputs" << std::endl;
-	}
+	if (this->calc.size() != 1)
+		std::cout << "Error, need more operator !" << std::endl;
 	else
-		std::cout << this->calc.top();
+		std::cout << "Result : " << this->calc.top() << std::endl;
 }
 
 RPN &RPN::operator=(const RPN &rpn)
