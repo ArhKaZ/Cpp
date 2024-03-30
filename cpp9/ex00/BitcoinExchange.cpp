@@ -35,6 +35,11 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &be)
 	this->base.insert(be.base.begin(), be.base.end());
 }
 
+bool isFileEmpty(std::ifstream& file)
+{
+ return file.peek() == std::ifstream::traits_type::eof();
+}
+
 bool verif_date_string(std::string s)
 {
 	if (s[4] != '-' || s[7] != '-')
@@ -93,7 +98,7 @@ bool verif_date_number(std::string s)
 {
 	int* date = get_date_ints(s);
 
-	if (date[0] < 0 || date[1] <= 0 || date[1] > 12 || date[2] < 0)
+	if (date[0] < 0 || date[1] <= 0 || date[1] > 12 || date[2] < 0 || s < "2009-01-02")
 	{
 		delete[] date;
 		return (false);
@@ -162,14 +167,18 @@ void BitcoinExchange::displayBTCExchange(std::string path)
 	double nbBtc = 0;
 	std::string date;
 
-	try
-	{
 		inputFile.open(path.c_str(), std::ifstream::in);
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	if (inputFile.fail())
+ {
+   std::cout << "Can't open file: " << path << std::endl;
+   exit(EXIT_FAILURE);
+ }
+if (isFileEmpty(inputFile))
+{
+ std::cout << "Input file is empty" << std::endl;
+ inputFile.close();
+ exit(EXIT_FAILURE);
+}
 	while (inputFile.good())
 	{
 		tmp = inputFile.get();
@@ -213,6 +222,7 @@ void BitcoinExchange::displayBTCExchange(std::string path)
 		else
 			line.push_back(tmp);
 	}
+inputfile.close();
 }
 
 int BitcoinExchange::get_info_from_files(std::string path)
@@ -224,15 +234,18 @@ int BitcoinExchange::get_info_from_files(std::string path)
 	std::string date;
 	std::string value;
 
-	try
-	{
 		myfile.open(path.c_str(), std::ifstream::in);
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << "ERROR : " << e.what() << '\n';
-		return (-1);
-	}
+	if (myfile.fail())
+ {
+   std::cout << "Can't open file: " << path << std::endl;
+   exit(EXIT_FAILURE);
+ }
+	if (isFileEmpty(myfile))
+{
+ std::cout << "Data file is empty" << std::endl;
+ myfile.close();
+ exit(EXIT_FAILURE);
+}
 	while (myfile.good())
 	{
 		tmp = myfile.get();
